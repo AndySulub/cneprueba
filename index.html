@@ -534,9 +534,12 @@
     </section>
   </main>
 
-  <div class="emergency-banner">
-    <span>¿Emergencia? Llama al 800-CNE-247 – Atención inmediata las 24 horas.</span>
-    <a href="tel:800263247" class="btn-beige banner-btn">Llamar ahora</a>
+    <div class="emergency-banner">
+    <span>¿Emergencia? Atiéndela primero llamando al <strong>911</strong> — atención inmediata las 24 horas.</span>
+    <div class="emergency-buttons">
+      <a href="tel:911" class="btn-beige banner-btn" aria-label="Llamar emergencia 911">Emergencia 911</a>
+      <a href="tel:800263247" class="btn-black banner-btn" aria-label="Línea directa con CNE 800 CNE 247" style="margin-left:10px;">Línea directa CNE — 800‑CNE‑247</a>
+    </div>
   </div>
 
   <footer class="footer">
@@ -577,14 +580,27 @@
 
   <!-- Modales y overlays -->
   <div id="emergencia-modal" class="modal" aria-hidden="true" role="dialog">
-    <div class="modal-content">
-      <button class="modal-close" id="emergencia-modal-close" aria-label="Cerrar">&times;</button>
-      <h2>Reportar Emergencia</h2>
-      <p>Comunícate de inmediato al <strong>800-CNE-247</strong></p>
-      <a href="tel:800263247" class="btn-beige">Llamar ahora</a>
-      <p>O escribe a <a href="mailto:emergencias@cne.mx">emergencias@cne.mx</a></p>
+  <div class="modal-content">
+    <button class="modal-close" id="emergencia-modal-close" aria-label="Cerrar">&times;</button>
+    <h2>Reportar Emergencia</h2>
+
+    <p style="font-weight:600;">Si la situación es crítica, llama primero al <strong>911</strong>.</p>
+
+    <div style="margin:12px 0;">
+      <a href="tel:911" class="btn-beige" aria-label="Llamar emergencia 911">Emergencia 911</a>
     </div>
+
+    <p style="margin-top:10px;">Si necesitas asistencia de la Comisión Nacional de Emergencia (CNE), contacta la línea directa:</p>
+
+    <div style="margin:12px 0;">
+      <a href="tel:800263247" class="btn-black" aria-label="Llamar línea directa CNE 800 CNE 247">Línea directa CNE — 800‑CNE‑247</a>
+    </div>
+
+    <p style="margin-top:16px; color:#555;">
+      También puedes escribir a <a href="mailto:emergencias@cne.mx">emergencias@cne.mx</a> para reportes no urgentes o seguimiento.
+    </p>
   </div>
+</div>
 
   <div id="login-modal" class="modal" aria-hidden="true" role="dialog">
     <div class="modal-content">
@@ -605,4 +621,5 @@
 </body>
 
 </html>
+
 
