@@ -1099,6 +1099,40 @@ tab-btn-footer:hover {
 /* Si no quieres bordes redondeados en las imágenes del modal, cambia aquí */
 .deleg-modal-cabecera img, .deleg-modal-miembros img { border-radius: 50%; }
 
+/* Emergency banner & buttons */
+.emergency-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #fff6e6;
+  border-top: 1px solid #eee;
+}
+.emergency-banner span { font-weight:600; color:#222; }
+.emergency-buttons { display:flex; gap:8px; align-items:center; }
+.emergency-buttons .banner-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+@media (max-width:600px) {
+  .emergency-banner { flex-direction:column; align-items:flex-start; }
+  .emergency-buttons { width:100%; flex-direction:column; }
+  .emergency-buttons .banner-btn { width:100%; text-align:center; }
+}
+
+/* Modal overlay already exists as #modal-overlay; ensure it covers screen */
+#modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:999; }
+
+/* Ensure modals are hidden by default (if not already) */
+.modal[aria-hidden="true"] { display:none; }
+.modal[aria-hidden="false"] { display:block; z-index:1000; }
+.modal .modal-content { max-width:720px; margin:48px auto; padding:20px; background:#fff; border-radius:12px; box-shadow:0 12px 48px rgba(0,0,0,0.18); }
+
 /* ========================================================================== */
 /* FIN style.css expandido                                                      */
+
 /* ========================================================================== */
