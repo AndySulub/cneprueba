@@ -605,4 +605,89 @@ if(loginBtn && loginModal && loginModalClose) {
       else if (dx < -40) openAt(current + 1);
     }, {passive:true});
   }
+  // >>> Abrir/cerrar emergencia, capacitación y submit del formulario
+document.addEventListener('DOMContentLoaded', function(){
+  // EMERGENCIA modal
+  const reportBtn = document.getElementById('reportar-btn');
+  const emergenciaModal = document.getElementById('emergencia-modal');
+  const emergenciaClose = document.getElementById('emergencia-modal-close');
+  const overlay = document.getElementById('modal-overlay');
+
+  function openEmergencia(){
+    if(!emergenciaModal) return;
+    emergenciaModal.style.display = 'block';
+    emergenciaModal.setAttribute('aria-hidden','false');
+    if (overlay) overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    // mover foco al modal para accesibilidad
+    const firstFocusable = emergenciaModal.querySelector('a, button, input, [tabindex]');
+    if (firstFocusable) firstFocusable.focus();
+  }
+  function closeEmergencia(){
+    if(!emergenciaModal) return;
+    emergenciaModal.style.display = 'none';
+    emergenciaModal.setAttribute('aria-hidden','true');
+    if (overlay) overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  if (reportBtn) reportBtn.addEventListener('click', openEmergencia);
+  if (emergenciaClose) emergenciaClose.addEventListener('click', closeEmergencia);
+  if (overlay) overlay.addEventListener('click', closeEmergencia);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEmergencia(); });
+
+  // CAPACITACIÓN modal (si existe)
+  const capBtn = document.getElementById('capacitacion-link');
+  const capModal = document.getElementById('capacitacion-modal');
+  const capClose = document.getElementById('capacitacion-modal-close');
+  if (capBtn && capModal) {
+    capBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      capModal.style.display = 'block';
+      capModal.setAttribute('aria-hidden','false');
+      if (overlay) overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      const f = capModal.querySelector('a,button,input,[tabindex]');
+      if (f) f.focus();
+    });
+  }
+  if (capClose) capClose.addEventListener('click', function(){
+    if (!capModal) return;
+    capModal.style.display = 'none';
+    capModal.setAttribute('aria-hidden','true');
+    if (overlay) overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+
+  // FORMULARIO: enviar a /api/contact
+  const joinForm = document.getElementById('join-form');
+  const successMsg = document.getElementById('form-success');
+  if (joinForm) {
+    joinForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const payload = {
+        nombre: this.nombre?.value || '',
+        correo: this.correo?.value || '',
+        telefono: this.telefono?.value || '',
+        delegacion: this.delegacion?.value || '',
+        mensaje: 'Solicitud de incorporación (formulario web)'
+      };
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+        const j = await res.json();
+        if (!res.ok) throw new Error(j.error || 'Error enviando');
+        this.reset();
+        if (successMsg) { successMsg.style.display = 'block'; setTimeout(()=> successMsg.style.display='none',5000); }
+        alert('Solicitud enviada correctamente.');
+      } catch (err) {
+        alert('Error enviando formulario: ' + (err.message || err));
+      }
+    });
+  }
+});
+
 })();
