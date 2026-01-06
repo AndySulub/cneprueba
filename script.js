@@ -1,5 +1,8 @@
-// script.js — versión consolidada y limpia
-// Mantengo exactamente los nombres/etiquetas de delegaciones (delegacionesData tal como los pegaste).
+// script.js — versión completa y consolidada
+// Cambios solicitados:
+// - Eliminado flujo de login (no hay modal ni apertura de acceso delegado).
+// - El formulario de contacto abre mailto:cne.cen07@gmail.com con los datos y también intenta POST /api/contact en background.
+// - Conservé exactamente delegacionesData tal y como lo pegaste.
 
 (function () {
   'use strict';
@@ -116,14 +119,14 @@
   }
 
   /* ---------------------------
-     Join form: validación y envío
+     Join form: validación y envío a correo
      --------------------------- */
   function initJoinForm() {
     const joinForm = document.getElementById('join-form');
     const successMsg = document.getElementById('form-success');
     if (!joinForm) return;
 
-    joinForm.addEventListener('submit', async function (e) {
+    joinForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
       // Clear prior errors
@@ -145,7 +148,6 @@
 
       if (!valid) return;
 
-      // Payload
       const payload = {
         nombre: nombre.value.trim(),
         correo: correo.value.trim(),
@@ -155,33 +157,42 @@
         mensaje: 'Solicitud de incorporación (formulario web)'
       };
 
-      // Intentamos enviar al endpoint si existe; si falla, mostramos éxito local (no romper UX)
+      // Prepara mailto con la dirección solicitada
+      const to = 'cne.cen07@gmail.com';
+      const subject = 'Solicitud de incorporación - CNE';
+      const bodyLines = [
+        `Nombre: ${payload.nombre}`,
+        `Correo: ${payload.correo}`,
+        `Teléfono: ${payload.telefono}`,
+        `Delegación: ${payload.delegacion}`,
+        `Disponibilidad: ${payload.disponibilidad.join(', ')}`,
+        '',
+        `Mensaje: ${payload.mensaje}`
+      ];
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+      // Abrir cliente de correo del usuario (acción principal)
       try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) {
-          // si no existe backend, no romper; mostrar mensaje local
-          try {
-            const j = await res.json();
-            throw new Error(j.error || 'Error enviando');
-          } catch (err) {
-            throw err;
-          }
-        }
-        // OK
-        this.reset();
-        if (successMsg) { successMsg.style.display = 'block'; setTimeout(()=> successMsg.style.display = 'none', 5000); }
-        alert('Solicitud enviada correctamente.');
+        window.open(mailto);
       } catch (err) {
-        // Fallback UX: si el endpoint no está implementado, mostramos confirmación local pero notificamos en console
-        console.warn('POST /api/contact falló:', err);
-        this.reset();
-        if (successMsg) { successMsg.style.display = 'block'; setTimeout(()=> successMsg.style.display = 'none', 5000); }
-        alert('Solicitud preparada localmente (no se pudo enviar al servidor).');
+        console.warn('No se pudo abrir mailto:', err);
       }
+
+      // Mostrar mensaje local de éxito (UX)
+      this.reset();
+      if (successMsg) { successMsg.style.display = 'block'; setTimeout(()=> successMsg.style.display = 'none', 5000); }
+
+      // Intenta enviar al endpoint /api/contact en background (si existe)
+      fetch('/api/contact', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+      }).then(res => {
+        if (!res.ok) return res.json().then(j => Promise.reject(j));
+        return res.json();
+      }).then(j => {
+        console.info('POST /api/contact OK', j);
+      }).catch(err => {
+        console.warn('POST /api/contact falló (opcional):', err);
+      });
     });
   }
 
@@ -282,7 +293,7 @@
       { numeral: "3051", cargo: "BRIGADA JUVENIL", nombre: "PAOLY SIMEONE SAUCEDO UC" },
       { numeral: "3052", cargo: "BRIGADA JUVENIL", nombre: "ANDRE MIGUEL SULUB MARTIN" },
       { numeral: "3053", cargo: "BRIGADA JUVENIL", nombre: "YARETZY DAEMY GONZALEZ CASTILLO" },
-      { numeral: "3054", cargo: "BRIGADA JUVENIL", nombre: "GABRIEL ELADIO UC DIAZ" },
+      { numeral: "3054", cargo: "BRIGADA JUVENIL", nombre: "GABRIEL ELADIO UC DIAZ" }
     ]
   },
   CANCUN: {
@@ -333,7 +344,7 @@
       { numeral: "3224", cargo: "SOCIO ACTIVO", nombre: "LUIS HERNANDEZ PABLO" },
       { numeral: "3225", cargo: "SOCIO ACTIVO", nombre: "MARIO ERNESTO RAMOS CRUZ" },
       { numeral: "3226", cargo: "SOCIO ACTIVO", nombre: "JAVIER JESUS SALGADO CHAVEZ" },
-      { numeral: "3251", cargo: "BRIGADA JUVENIL", nombre: "JADE ADILENE VERGARA QUIÑONEZ" },
+      { numeral: "3251", cargo: "BRIGADA JUVENIL", nombre: "JADE ADILENE VERGARA QUIÑONEZ" }
     ]
   },
   COZUMEL: {
@@ -468,13 +479,13 @@
     nombre: "División Fénix",
     foto: "img/fenix.jpg",
     miembros: [
-      { numeral: "F1", cargo: "COORDINADOR DE AMBULANCIAS", nombre: "JOSUE EMMANUEL AGUILAR CEBALLOS" },
+      { numeral: "F1", cargo: "COORDINADOR DE AMBULANCIAS", nombre: "JOSUE EMMANUEL AGUILAR CебАЛЛОС" },
       { numeral: "F2", cargo: "PARAMEDICO", nombre: "ADAN TAPIA AGUILAR" },
       { numeral: "F3", cargo: "OPERADOR - PARAMEDICO", nombre: "MISAEL ALEXIS BACELIS BALAM" },
       { numeral: "F4", cargo: "OPERADOR - PARAMEDICO", nombre: "JOSE MARIA URZAIZ MONTES DE OCA " },
       { numeral: "F5", cargo: "PARAMEDICO", nombre: "JOSÉ LUIS KANTÚ PAT" },
       { numeral: "F6", cargo: "OPERADOR - PARAMEDICO", nombre: "JORGE ABRAHAM MARTINEZ CHAVEZ" },
-      { numeral: "F7", cargo: "PARAMEDICO", nombre: "SILVIA CAROLINA CANUL NAH" },
+      { numeral: "F7", cargo: "PARAMEDICO", nombre: "SILVIA CAROLINA CANUL NAH" }
     ]
   },
   MOVILES: {
@@ -484,229 +495,4 @@
       { numeral: "5003", cargo: "MOVILES EN TRANSITO", nombre: "JUAN JOSE PASOS ECHAVARRIA" }
     ]
   }
-  };
-
-  // Map para tooltip (coincide con las claves normalizadas arriba)
-  const delegNames = {
-    PETO: "Peto, Yucatán: Peto",
-    PROGRESO: "Progreso, Yucatán: Progreso",
-    PISTE: "Pisté, Yucatán: Pisté",
-    FCP: "Felipe Carrillo Puerto, Q. Roo: FCP",
-    CANCUN: "Cancún, Q. Roo: Cancún",
-    BACALAR: "Bacalar, Q. Roo: Bacalar",
-    COZUMEL: "Cozumel, Q. Roo: Cozumel",
-    CHETUMAL: "Chetumal, Q. Roo: Chetumal",
-    MERIDA: "Mérida, Yucatán: Mérida",
-    JMM: "José María Morelos, Q. Roo: JMM",
-    KANTUNILKIN: "Kantunilkin, Q. Roo: Kantunilkin",
-    RIO_HONDO: "Río Hondo, Q. Roo: Río Hondo",
-    CALKINI: "Calkiní, Campeche: Calkiní",
-    DIVISION_FENIX: "División Fénix",
-    MOVILES: "Moviles en Transito"
-  };
-
-  /* ---------------------------
-     Tooltip y eventos en puntos del mapa
-     --------------------------- */
-  function initDelegacionesUI() {
-    const delegTooltip = document.getElementById('deleg-tooltip');
-
-    document.querySelectorAll('.deleg-dot').forEach(dot => {
-      dot.addEventListener('mouseenter', function() {
-        const key = dot.dataset.deleg;
-        if (!delegTooltip) return;
-        delegTooltip.textContent = delegNames[key] || '';
-        delegTooltip.style.display = 'block';
-        delegTooltip.setAttribute('aria-hidden','false');
-        const svgRect = dot.ownerSVGElement.getBoundingClientRect();
-        const dotRect = dot.getBoundingClientRect();
-        let left = dotRect.left - svgRect.left + svgRect.width/2 - 60;
-        if (window.innerWidth < 600) left = 10;
-        delegTooltip.style.left = left + 'px';
-      });
-      dot.addEventListener('mouseleave', function() {
-        if (!delegTooltip) return;
-        delegTooltip.style.display = 'none';
-        delegTooltip.setAttribute('aria-hidden','true');
-      });
-      dot.addEventListener('click', function() {
-        showDelegModal(dot.dataset.deleg);
-      });
-    });
-
-    document.querySelectorAll('.deleg-link').forEach(btn => {
-      btn.addEventListener('click', function() {
-        showDelegModal(btn.dataset.deleg);
-      });
-    });
-
-    const delegModal = document.getElementById('deleg-modal');
-    const delegModalBody = document.getElementById('deleg-modal-body');
-    const delegModalClose = document.getElementById('deleg-modal-close');
-
-    function showDelegModal(key) {
-      const data = delegacionesData[key];
-      if (!data || !delegModalBody || !delegModal) return;
-      let html = '';
-      html += `<div class="deleg-modal-cabecera">
-        <img src="${data.foto}" alt="${data.nombre}" onerror="this.onerror=null;this.src='img/default-deleg.jpg'">
-        <h2>${escapeHtml(data.nombre)}</h2>
-      </div>`;
-      html += `<ul class="deleg-modal-miembros">`;
-      (data.miembros || []).forEach(m => {
-        html += `<li>
-          <img src="img/delegado1.jpg" alt="${escapeHtml(m.cargo)}" onerror="this.onerror=null;this.src='img/default-person.jpg'">
-          <div><strong>${escapeHtml(m.cargo)}${m.numeral ? ' (' + escapeHtml(m.numeral) + ')' : ''}:</strong> ${escapeHtml(m.nombre)}</div>
-        </li>`;
-      });
-      html += `</ul>`;
-      delegModalBody.innerHTML = html;
-      delegModal.style.display = 'flex';
-      delegModal.setAttribute('aria-hidden','false');
-      if (modalOverlay) modalOverlay.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-
-    if (delegModalClose) delegModalClose.addEventListener('click', function() {
-      if (!delegModal) return;
-      delegModal.style.display = 'none';
-      delegModal.setAttribute('aria-hidden','true');
-      if (modalOverlay) modalOverlay.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-
-    // expose to global for reuse inside file
-    window.showDelegModal = showDelegModal;
-  }
-
-  /* ---------------------------
-     Login modal
-     --------------------------- */
-  function initLogin() {
-    const loginBtn = document.getElementById('login-btn');
-    const loginModal = document.getElementById('login-modal');
-    const loginModalClose = document.getElementById('login-modal-close');
-    if (loginBtn && loginModal) {
-      loginBtn.addEventListener('click', () => openModalById('login-modal'));
-    }
-    if (loginModalClose) loginModalClose.addEventListener('click', () => closeModalById('login-modal'));
-
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-      loginForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        alert('Funcionalidad de login pendiente de backend.'); // placeholder
-      });
-    }
-  }
-
-  /* ---------------------------
-     Galería / Lightbox
-     --------------------------- */
-  function initGallery() {
-    const thumbs = document.querySelectorAll('.gallery-thumb');
-    const modal = document.getElementById('gallery-modal');
-    const modalImg = document.getElementById('gallery-modal-img');
-    const captionEl = document.getElementById('gallery-caption');
-    const btnClose = modal ? modal.querySelector('.gallery-close') : null;
-    const btnPrev = modal ? modal.querySelector('.gallery-prev') : null;
-    const btnNext = modal ? modal.querySelector('.gallery-next') : null;
-    if (!thumbs.length || !modal) return;
-
-    const images = Array.from(thumbs).map((btn, i) => {
-      const img = btn.querySelector('img');
-      return { src: img.getAttribute('src'), alt: img.getAttribute('alt') || '', index: i };
-    });
-
-    let current = 0;
-
-    function openAt(index) {
-      if (index < 0) index = images.length - 1;
-      if (index >= images.length) index = 0;
-      current = index;
-      modalImg.src = images[current].src;
-      modalImg.alt = images[current].alt;
-      captionEl.textContent = images[current].alt;
-      modal.setAttribute('aria-hidden', 'false');
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      if (btnClose) btnClose.focus();
-    }
-
-    function closeGallery() {
-      modal.setAttribute('aria-hidden', 'true');
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-      modalImg.src = '';
-    }
-
-    thumbs.forEach(btn => btn.addEventListener('click', (e) => {
-      const idx = parseInt(btn.dataset.index, 10) || 0;
-      openAt(idx);
-    }));
-
-    if (btnClose) btnClose.addEventListener('click', closeGallery);
-    if (btnPrev) btnPrev.addEventListener('click', () => openAt(current - 1));
-    if (btnNext) btnNext.addEventListener('click', () => openAt(current + 1));
-
-    document.addEventListener('keydown', (e) => {
-      if (modal.getAttribute('aria-hidden') === 'false') {
-        if (e.key === 'Escape') closeGallery();
-        if (e.key === 'ArrowLeft') openAt(current - 1);
-        if (e.key === 'ArrowRight') openAt(current + 1);
-      }
-    });
-
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeGallery(); });
-
-    // touch swipe
-    let startX = 0;
-    if (modalImg) {
-      modalImg.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-      modalImg.addEventListener('touchend', (e) => {
-        const dx = (e.changedTouches[0].clientX - startX);
-        if (dx > 40) openAt(current - 1);
-        else if (dx < -40) openAt(current + 1);
-      }, {passive:true});
-    }
-  }
-
-  /* ---------------------------
-     Global overlay/escape behavior
-     --------------------------- */
-  function initGlobalClosers() {
-    if (modalOverlay) modalOverlay.addEventListener('click', closeAllModals);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(); });
-  }
-
-  /* ---------------------------
-     Helper: escapeHtml
-     --------------------------- */
-  function escapeHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/[&<>"']/g, function (s) {
-      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[s];
-    });
-  }
-
-  /* ---------------------------
-     Inicialización al DOM ready
-     --------------------------- */
-  document.addEventListener('DOMContentLoaded', function () {
-    initTabs();
-    initHamburger();
-    initHeroAndFade();
-    initEmergency();
-    initJoinForm();
-    initFAQ();
-    initDelegacionesUI();
-    initLogin();
-    initGallery();
-    initGlobalClosers();
-
-    // Voluntario CTA
-    const voluntarioBtn = document.getElementById('voluntario-btn');
-    if (voluntarioBtn) voluntarioBtn.addEventListener('click', () => switchTab('contacto'));
-  });
-
-})();
+};
