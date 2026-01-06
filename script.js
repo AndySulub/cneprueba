@@ -409,10 +409,10 @@ const delegacionesData = {
     miembros: [
       { numeral: "F1", cargo: "COORDINADOR DE AMBULANCIAS", nombre: "JOSUE EMMANUEL AGUILAR CEBALLOS" },
       { numeral: "F2", cargo: "PARAMEDICO", nombre: "ADAN TAPIA AGUILAR" },
-      { numeral: "F3", cargo: "PARAMEDICO", nombre: "MISAEL ALEXIS BACELIS BALAM" },
-      { numeral: "F4", cargo: "PARAMEDICO", nombre: "JOSE MARIA URZAIZ MONTES DE OCA " },
+      { numeral: "F3", cargo: "OPERADOR - PARAMEDICO", nombre: "MISAEL ALEXIS BACELIS BALAM" },
+      { numeral: "F4", cargo: "OPERADOR - PARAMEDICO", nombre: "JOSE MARIA URZAIZ MONTES DE OCA " },
       { numeral: "F5", cargo: "PARAMEDICO", nombre: "JOSÉ LUIS KANTÚ PAT" },
-      { numeral: "F6", cargo: "PARAMEDICO", nombre: "JORGE ABRAHAM MARTINEZ CHAVEZ" },
+      { numeral: "F6", cargo: "OPERADOR - PARAMEDICO", nombre: "JORGE ABRAHAM MARTINEZ CHAVEZ" },
       { numeral: "F7", cargo: "PARAMEDICO", nombre: "SILVIA CAROLINA CANUL NAH" },
     ]
   },
@@ -683,4 +683,5 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 })();
+
 
