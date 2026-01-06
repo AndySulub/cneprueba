@@ -1,147 +1,208 @@
-// ========== TABS NAVIGATION ==========
-function switchTab(tabName) {
-  document.querySelectorAll('.tab-btn, .tab-btn-footer').forEach(btn => {
-    if (btn.dataset.tab === tabName) btn.classList.add('active'); else btn.classList.remove('active');
-  });
-  document.querySelectorAll('.tab-section').forEach(sec => {
-    if (sec.id === tabName) {
-      sec.classList.add('active');
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    } else {
-      sec.classList.remove('active');
-    }
-  });
-}
+// script.js — versión consolidada y limpia
+// Mantengo exactamente los nombres/etiquetas de delegaciones (delegacionesData tal como los pegaste).
 
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-});
-document.querySelectorAll('.tab-btn-footer').forEach(btn => {
-  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-});
+(function () {
+  'use strict';
 
-// HAMBURGER
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('nav');
-if (hamburger && nav) {
-  hamburger.addEventListener('click', () => {
-    nav.classList.toggle('open');
-    const expanded = nav.classList.contains('open');
-    hamburger.setAttribute('aria-expanded', expanded);
-  });
-}
+  /* ---------------------------
+     Utilidades para modales/overlay
+     --------------------------- */
+  const modalOverlay = document.getElementById('modal-overlay');
 
-// ESC global close behavior
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') {
-    if (nav) nav.classList.remove('open');
-    closeModalIfOpen();
+  function showOverlay() { if (modalOverlay) modalOverlay.style.display = 'block'; }
+  function hideOverlay() { if (modalOverlay) modalOverlay.style.display = 'none'; }
+
+  function openModalById(id) {
+    const m = document.getElementById(id);
+    if (!m) return;
+    m.style.display = 'flex';
+    m.setAttribute('aria-hidden', 'false');
+    showOverlay();
+    document.body.style.overflow = 'hidden';
+    const focusable = m.querySelector('a, button, input, [tabindex]');
+    if (focusable) focusable.focus();
+  }
+
+  function closeModalById(id) {
+    const m = document.getElementById(id);
+    if (!m) return;
+    m.style.display = 'none';
+    m.setAttribute('aria-hidden', 'true');
+    hideOverlay();
     document.body.style.overflow = '';
   }
-});
 
-// HERO ANIM
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const hero = document.querySelector('.hero-content');
-    if (hero) hero.classList.add('visible');
-  }, 350);
-});
+  function closeAllModals() {
+    document.querySelectorAll('.modal[aria-hidden="false"]').forEach(m => {
+      m.style.display = 'none';
+      m.setAttribute('aria-hidden', 'true');
+    });
+    hideOverlay();
+    document.body.style.overflow = '';
+  }
 
-// ON-SCROLL FADE INS
-function handleFadeIns() {
-  const fadeEls = document.querySelectorAll('.fade-in');
-  fadeEls.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 60) el.classList.add('visible');
-  });
-}
-window.addEventListener('scroll', handleFadeIns);
-window.addEventListener('DOMContentLoaded', handleFadeIns);
+  /* ---------------------------
+     Tabs navigation & hamburger
+     --------------------------- */
+  function switchTab(tabName) {
+    document.querySelectorAll('.tab-btn, .tab-btn-footer').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabName);
+    });
+    document.querySelectorAll('.tab-section').forEach(sec => {
+      sec.classList.toggle('active', sec.id === tabName);
+      if (sec.id === tabName) window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-// EMERGENCY MODAL
-const emergenciaBtn = document.getElementById('emergencia-btn');
-const reportarBtn = document.getElementById('reportar-btn');
-const emergenciaModal = document.getElementById('emergencia-modal');
-const modalOverlay = document.getElementById('modal-overlay');
-const emergenciaModalClose = document.getElementById('emergencia-modal-close');
+  function initTabs() {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+    document.querySelectorAll('.tab-btn-footer').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+  }
 
-function openModal() {
-  if (!emergenciaModal || !modalOverlay) return;
-  emergenciaModal.setAttribute('aria-hidden','false');
-  modalOverlay.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  if (!emergenciaModal || !modalOverlay) return;
-  emergenciaModal.setAttribute('aria-hidden','true');
-  modalOverlay.style.display = 'none';
-  document.body.style.overflow = '';
-}
-function closeModalIfOpen() {
-  // close any open modal overlays
-  if (emergenciaModal && emergenciaModal.getAttribute('aria-hidden') === 'false') closeModal();
-  const openModals = document.querySelectorAll('.modal[aria-hidden="false"]');
-  openModals.forEach(m => { m.setAttribute('aria-hidden','true'); });
-  if (modalOverlay) modalOverlay.style.display = 'none';
-}
-if(emergenciaBtn) emergenciaBtn.addEventListener('click', openModal);
-if(reportarBtn) reportarBtn.addEventListener('click', openModal);
-if(emergenciaModalClose) emergenciaModalClose.addEventListener('click', closeModal);
-if(modalOverlay) modalOverlay.addEventListener('click', closeModal);
+  function initHamburger() {
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    if (!hamburger || !nav) return;
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      const expanded = nav.classList.contains('open');
+      hamburger.setAttribute('aria-expanded', expanded);
+    });
+  }
 
-// VOLUNTARIO CTA
-const voluntarioBtn = document.getElementById('voluntario-btn');
-if(voluntarioBtn) voluntarioBtn.addEventListener('click', () => switchTab('contacto'));
+  /* ---------------------------
+     Hero animation + fade-ins
+     --------------------------- */
+  function initHeroAndFade() {
+    setTimeout(() => {
+      const hero = document.querySelector('.hero-content');
+      if (hero) hero.classList.add('visible');
+    }, 350);
 
-// JOIN FORM VALIDATION
-const joinForm = document.getElementById('join-form');
-const successMsg = document.getElementById('form-success');
-if(joinForm) {
-  joinForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    let valid = true;
-
-    const nombre = this.nombre;
-    const nombreError = nombre.nextElementSibling;
-    if (!nombre.value.trim()) { nombreError.textContent = 'Ingresa tu nombre.'; valid = false; } else { nombreError.textContent = ''; }
-
-    const correo = this.correo;
-    const correoError = correo.nextElementSibling;
-    if (!correo.value.trim() || !/\S+@\S+\.\S+/.test(correo.value)) { correoError.textContent = 'Correo electrónico inválido.'; valid = false; } else { correoError.textContent = ''; }
-
-    const telefono = this.telefono;
-    const telError = telefono.nextElementSibling;
-    if (!telefono.value.trim() || !telefono.value.match(/^[0-9\s\-+()]{8,}$/)) { telError.textContent = 'Teléfono inválido.'; valid = false; } else { telError.textContent = ''; }
-
-    const delegacion = this.delegacion;
-    const delegError = delegacion.nextElementSibling;
-    if (!delegacion.value) { delegError.textContent = 'Selecciona delegación.'; valid = false; } else { delegError.textContent = ''; }
-
-    const dispChecks = joinForm.querySelectorAll('input[name="disp[]"]:checked');
-    const dispError = joinForm.querySelector('.disponibilidad .error-msg');
-    if (dispChecks.length === 0) { dispError.textContent = 'Selecciona al menos una opción.'; valid = false; } else { dispError.textContent = ''; }
-
-    if (valid) {
-      joinForm.reset();
-      if(successMsg) { successMsg.style.display = 'block'; setTimeout(() => { successMsg.style.display = 'none'; }, 5500); }
+    function handleFadeIns() {
+      const fadeEls = document.querySelectorAll('.fade-in');
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) el.classList.add('visible');
+      });
     }
-  });
-}
+    window.addEventListener('scroll', handleFadeIns);
+    handleFadeIns();
+  }
 
-// FAQ toggles
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const item = btn.parentElement;
-    const open = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!open) item.classList.add('open');
-  });
-});
+  /* ---------------------------
+     Emergency modal (unificado)
+     --------------------------- */
+  function initEmergency() {
+    const emergenciaBtn = document.getElementById('emergencia-btn');
+    const reportarBtn = document.getElementById('reportar-btn');
+    const emergenciaModal = document.getElementById('emergencia-modal');
+    const emergenciaModalClose = document.getElementById('emergencia-modal-close');
 
-// ========== DELEGACIONES MAP TOOLTIP Y MODAL ==========
-// delegacionesData (completo, normalizado; CAMPECHE eliminado)
-const delegacionesData = {
+    // Ensure hidden by default
+    if (emergenciaModal && emergenciaModal.getAttribute('aria-hidden') === 'true') emergenciaModal.style.display = 'none';
+
+    function openEmergencia(e) {
+      if (e) e.preventDefault();
+      openModalById('emergencia-modal');
+    }
+    function closeEmergencia() {
+      closeModalById('emergencia-modal');
+    }
+
+    if (emergenciaBtn) emergenciaBtn.addEventListener('click', openEmergencia);
+    if (reportarBtn) reportarBtn.addEventListener('click', openEmergencia);
+    if (emergenciaModalClose) emergenciaModalClose.addEventListener('click', closeEmergencia);
+  }
+
+  /* ---------------------------
+     Join form: validación y envío
+     --------------------------- */
+  function initJoinForm() {
+    const joinForm = document.getElementById('join-form');
+    const successMsg = document.getElementById('form-success');
+    if (!joinForm) return;
+
+    joinForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Clear prior errors
+      this.querySelectorAll('.error-msg').forEach(el => el.textContent = '');
+
+      let valid = true;
+      const nombre = this.nombre;
+      const correo = this.correo;
+      const telefono = this.telefono;
+      const delegacion = this.delegacion;
+      const dispChecks = Array.from(this.querySelectorAll('input[name="disp[]"]:checked'));
+
+      if (!nombre.value.trim()) { nombre.nextElementSibling.textContent = 'Ingresa tu nombre.'; valid = false; }
+      if (!correo.value.trim() || !/\S+@\S+\.\S+/.test(correo.value)) { correo.nextElementSibling.textContent = 'Correo electrónico inválido.'; valid = false; }
+      if (!telefono.value.trim() || !telefono.value.match(/^[0-9\s\-+()]{8,}$/)) { telefono.nextElementSibling.textContent = 'Teléfono inválido.'; valid = false; }
+      if (!delegacion.value) { delegacion.nextElementSibling.textContent = 'Selecciona delegación.'; valid = false; }
+      const dispError = this.querySelector('.disponibilidad .error-msg');
+      if (dispChecks.length === 0) { if (dispError) dispError.textContent = 'Selecciona al menos una opción.'; valid = false; }
+
+      if (!valid) return;
+
+      // Payload
+      const payload = {
+        nombre: nombre.value.trim(),
+        correo: correo.value.trim(),
+        telefono: telefono.value.trim(),
+        delegacion: delegacion.value,
+        disponibilidad: dispChecks.map(i => i.value),
+        mensaje: 'Solicitud de incorporación (formulario web)'
+      };
+
+      // Intentamos enviar al endpoint si existe; si falla, mostramos éxito local (no romper UX)
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+          // si no existe backend, no romper; mostrar mensaje local
+          try {
+            const j = await res.json();
+            throw new Error(j.error || 'Error enviando');
+          } catch (err) {
+            throw err;
+          }
+        }
+        // OK
+        this.reset();
+        if (successMsg) { successMsg.style.display = 'block'; setTimeout(()=> successMsg.style.display = 'none', 5000); }
+        alert('Solicitud enviada correctamente.');
+      } catch (err) {
+        // Fallback UX: si el endpoint no está implementado, mostramos confirmación local pero notificamos en console
+        console.warn('POST /api/contact falló:', err);
+        this.reset();
+        if (successMsg) { successMsg.style.display = 'block'; setTimeout(()=> successMsg.style.display = 'none', 5000); }
+        alert('Solicitud preparada localmente (no se pudo enviar al servidor).');
+      }
+    });
+  }
+
+  /* ---------------------------
+     FAQ toggles
+     --------------------------- */
+  function initFAQ() {
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = btn.parentElement;
+        const open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!open) item.classList.add('open');
+      });
+    });
+  }
+
+  /* ==========================================================================
+     Delegaciones data (USADA EXACTAMENTE COMO LA PROVISTA POR TI)
+     ========================================================================== */
+  const delegacionesData = {
   PETO: {
     nombre: "Peto, Yucatán",
     foto: "img/peto.jpg",
@@ -423,265 +484,229 @@ const delegacionesData = {
       { numeral: "5003", cargo: "MOVILES EN TRANSITO", nombre: "JUAN JOSE PASOS ECHAVARRIA" }
     ]
   }
-};
+  };
 
-// Map para tooltip (coincide con las claves normalizadas arriba)
-const delegNames = {
-  PETO: "Peto, Yucatán: Peto",
-  PROGRESO: "Progreso, Yucatán: Progreso",
-  PISTE: "Pisté, Yucatán: Pisté",
-  FCP: "Felipe Carrillo Puerto, Q. Roo: FCP",
-  CANCUN: "Cancún, Q. Roo: Cancún",
-  BACALAR: "Bacalar, Q. Roo: Bacalar",
-  COZUMEL: "Cozumel, Q. Roo: Cozumel",
-  CHETUMAL: "Chetumal, Q. Roo: Chetumal",
-  MERIDA: "Mérida, Yucatán: Mérida",
-  JMM: "José María Morelos, Q. Roo: JMM",
-  KANTUNILKIN: "Kantunilkin, Q. Roo: Kantunilkin",
-  RIO_HONDO: "Río Hondo, Q. Roo: Río Hondo",
-  CALKINI: "Calkiní, Campeche: Calkiní",
-  DIVISION_FENIX: "División Fénix",
-  MOVILES: "Moviles en Transito"
-};
+  // Map para tooltip (coincide con las claves normalizadas arriba)
+  const delegNames = {
+    PETO: "Peto, Yucatán: Peto",
+    PROGRESO: "Progreso, Yucatán: Progreso",
+    PISTE: "Pisté, Yucatán: Pisté",
+    FCP: "Felipe Carrillo Puerto, Q. Roo: FCP",
+    CANCUN: "Cancún, Q. Roo: Cancún",
+    BACALAR: "Bacalar, Q. Roo: Bacalar",
+    COZUMEL: "Cozumel, Q. Roo: Cozumel",
+    CHETUMAL: "Chetumal, Q. Roo: Chetumal",
+    MERIDA: "Mérida, Yucatán: Mérida",
+    JMM: "José María Morelos, Q. Roo: JMM",
+    KANTUNILKIN: "Kantunilkin, Q. Roo: Kantunilkin",
+    RIO_HONDO: "Río Hondo, Q. Roo: Río Hondo",
+    CALKINI: "Calkiní, Campeche: Calkiní",
+    DIVISION_FENIX: "División Fénix",
+    MOVILES: "Moviles en Transito"
+  };
 
-// Tooltip y eventos en puntos del mapa
-const delegTooltip = document.getElementById('deleg-tooltip');
-document.querySelectorAll('.deleg-dot').forEach(dot => {
-  dot.addEventListener('mouseenter', function() {
-    const key = dot.dataset.deleg;
-    if (!delegTooltip) return;
-    delegTooltip.textContent = delegNames[key] || '';
-    delegTooltip.style.display = 'block';
-    delegTooltip.setAttribute('aria-hidden','false');
-    const svgRect = dot.ownerSVGElement.getBoundingClientRect();
-    const dotRect = dot.getBoundingClientRect();
-    let left = dotRect.left - svgRect.left + svgRect.width/2 - 60;
-    if (window.innerWidth < 600) left = 10;
-    delegTooltip.style.left = left + 'px';
-  });
-  dot.addEventListener('mouseleave', function() {
-    if (!delegTooltip) return;
-    delegTooltip.style.display = 'none';
-    delegTooltip.setAttribute('aria-hidden','true');
-  });
-  dot.addEventListener('click', function() {
-    showDelegModal(dot.dataset.deleg);
-  });
-});
-document.querySelectorAll('.deleg-link').forEach(btn => {
-  btn.addEventListener('click', function() {
-    showDelegModal(btn.dataset.deleg);
-  });
-});
+  /* ---------------------------
+     Tooltip y eventos en puntos del mapa
+     --------------------------- */
+  function initDelegacionesUI() {
+    const delegTooltip = document.getElementById('deleg-tooltip');
 
-// Muestra modal con miembros de la delegación (con fallback de imagen)
-const delegModal = document.getElementById('deleg-modal');
-const delegModalBody = document.getElementById('deleg-modal-body');
-const delegModalClose = document.getElementById('deleg-modal-close');
+    document.querySelectorAll('.deleg-dot').forEach(dot => {
+      dot.addEventListener('mouseenter', function() {
+        const key = dot.dataset.deleg;
+        if (!delegTooltip) return;
+        delegTooltip.textContent = delegNames[key] || '';
+        delegTooltip.style.display = 'block';
+        delegTooltip.setAttribute('aria-hidden','false');
+        const svgRect = dot.ownerSVGElement.getBoundingClientRect();
+        const dotRect = dot.getBoundingClientRect();
+        let left = dotRect.left - svgRect.left + svgRect.width/2 - 60;
+        if (window.innerWidth < 600) left = 10;
+        delegTooltip.style.left = left + 'px';
+      });
+      dot.addEventListener('mouseleave', function() {
+        if (!delegTooltip) return;
+        delegTooltip.style.display = 'none';
+        delegTooltip.setAttribute('aria-hidden','true');
+      });
+      dot.addEventListener('click', function() {
+        showDelegModal(dot.dataset.deleg);
+      });
+    });
 
-function showDelegModal(key) {
-  const data = delegacionesData[key];
-  if (!data || !delegModalBody || !delegModal) return;
-  let html = '';
-  html += `<div class="deleg-modal-cabecera">
-    <img src="${data.foto}" alt="${data.nombre}" onerror="this.onerror=null;this.src='img/default-deleg.jpg'">
-    <h2>${data.nombre}</h2>
-  </div>`;
-  html += `<ul class="deleg-modal-miembros">`;
-  data.miembros.forEach(m => {
-    html += `<li>
-      <img src="img/delegado1.jpg" alt="${m.cargo}" onerror="this.onerror=null;this.src='img/default-person.jpg'">
-      <div><strong>${m.cargo}${m.numeral ? ' (' + m.numeral + ')' : ''}:</strong> ${m.nombre}</div>
-    </li>`;
-  });
-  html += `</ul>`;
-  delegModalBody.innerHTML = html;
-  delegModal.setAttribute('aria-hidden','false');
-  if (modalOverlay) modalOverlay.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-if (delegModalClose) delegModalClose.addEventListener('click', function() {
-  if (!delegModal) return;
-  delegModal.setAttribute('aria-hidden','true');
-  if (modalOverlay) modalOverlay.style.display = 'none';
-  document.body.style.overflow = '';
-});
+    document.querySelectorAll('.deleg-link').forEach(btn => {
+      btn.addEventListener('click', function() {
+        showDelegModal(btn.dataset.deleg);
+      });
+    });
 
-// Login modal
-const loginBtn = document.getElementById('login-btn');
-const loginModal = document.getElementById('login-modal');
-const loginModalClose = document.getElementById('login-modal-close');
-if(loginBtn && loginModal && loginModalClose) {
-  loginBtn.addEventListener('click', function() {
-    loginModal.setAttribute('aria-hidden','false');
-    if (modalOverlay) modalOverlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  });
-  loginModalClose.addEventListener('click', function() {
-    loginModal.setAttribute('aria-hidden','true');
-    if (modalOverlay) modalOverlay.style.display = 'none';
-    document.body.style.overflow = '';
-  });
-}
+    const delegModal = document.getElementById('deleg-modal');
+    const delegModalBody = document.getElementById('deleg-modal-body');
+    const delegModalClose = document.getElementById('deleg-modal-close');
 
-/* ===== Galeria Quiénes Somos: lightbox simple ===== */
-(function(){
-  const thumbs = document.querySelectorAll('.gallery-thumb');
-  const modal = document.getElementById('gallery-modal');
-  const modalImg = document.getElementById('gallery-modal-img');
-  const captionEl = document.getElementById('gallery-caption');
-  const btnClose = modal ? modal.querySelector('.gallery-close') : null;
-  const btnPrev = modal ? modal.querySelector('.gallery-prev') : null;
-  const btnNext = modal ? modal.querySelector('.gallery-next') : null;
-  if (!thumbs.length || !modal) return;
+    function showDelegModal(key) {
+      const data = delegacionesData[key];
+      if (!data || !delegModalBody || !delegModal) return;
+      let html = '';
+      html += `<div class="deleg-modal-cabecera">
+        <img src="${data.foto}" alt="${data.nombre}" onerror="this.onerror=null;this.src='img/default-deleg.jpg'">
+        <h2>${escapeHtml(data.nombre)}</h2>
+      </div>`;
+      html += `<ul class="deleg-modal-miembros">`;
+      (data.miembros || []).forEach(m => {
+        html += `<li>
+          <img src="img/delegado1.jpg" alt="${escapeHtml(m.cargo)}" onerror="this.onerror=null;this.src='img/default-person.jpg'">
+          <div><strong>${escapeHtml(m.cargo)}${m.numeral ? ' (' + escapeHtml(m.numeral) + ')' : ''}:</strong> ${escapeHtml(m.nombre)}</div>
+        </li>`;
+      });
+      html += `</ul>`;
+      delegModalBody.innerHTML = html;
+      delegModal.style.display = 'flex';
+      delegModal.setAttribute('aria-hidden','false');
+      if (modalOverlay) modalOverlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
 
-  const images = Array.from(thumbs).map((btn, i) => {
-    const img = btn.querySelector('img');
-    return {
-      src: img.getAttribute('src'),
-      alt: img.getAttribute('alt') || '',
-      index: i
-    };
-  });
+    if (delegModalClose) delegModalClose.addEventListener('click', function() {
+      if (!delegModal) return;
+      delegModal.style.display = 'none';
+      delegModal.setAttribute('aria-hidden','true');
+      if (modalOverlay) modalOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+    });
 
-  let current = 0;
-
-  function openAt(index){
-    if (index < 0) index = images.length - 1;
-    if (index >= images.length) index = 0;
-    current = index;
-    modalImg.src = images[current].src;
-    modalImg.alt = images[current].alt;
-    captionEl.textContent = images[current].alt;
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    if (btnClose) btnClose.focus();
+    // expose to global for reuse inside file
+    window.showDelegModal = showDelegModal;
   }
 
-  function closeGallery(){
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    modalImg.src = '';
+  /* ---------------------------
+     Login modal
+     --------------------------- */
+  function initLogin() {
+    const loginBtn = document.getElementById('login-btn');
+    const loginModal = document.getElementById('login-modal');
+    const loginModalClose = document.getElementById('login-modal-close');
+    if (loginBtn && loginModal) {
+      loginBtn.addEventListener('click', () => openModalById('login-modal'));
+    }
+    if (loginModalClose) loginModalClose.addEventListener('click', () => closeModalById('login-modal'));
+
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+      loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        alert('Funcionalidad de login pendiente de backend.'); // placeholder
+      });
+    }
   }
 
-  thumbs.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  /* ---------------------------
+     Galería / Lightbox
+     --------------------------- */
+  function initGallery() {
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const modal = document.getElementById('gallery-modal');
+    const modalImg = document.getElementById('gallery-modal-img');
+    const captionEl = document.getElementById('gallery-caption');
+    const btnClose = modal ? modal.querySelector('.gallery-close') : null;
+    const btnPrev = modal ? modal.querySelector('.gallery-prev') : null;
+    const btnNext = modal ? modal.querySelector('.gallery-next') : null;
+    if (!thumbs.length || !modal) return;
+
+    const images = Array.from(thumbs).map((btn, i) => {
+      const img = btn.querySelector('img');
+      return { src: img.getAttribute('src'), alt: img.getAttribute('alt') || '', index: i };
+    });
+
+    let current = 0;
+
+    function openAt(index) {
+      if (index < 0) index = images.length - 1;
+      if (index >= images.length) index = 0;
+      current = index;
+      modalImg.src = images[current].src;
+      modalImg.alt = images[current].alt;
+      captionEl.textContent = images[current].alt;
+      modal.setAttribute('aria-hidden', 'false');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      if (btnClose) btnClose.focus();
+    }
+
+    function closeGallery() {
+      modal.setAttribute('aria-hidden', 'true');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      modalImg.src = '';
+    }
+
+    thumbs.forEach(btn => btn.addEventListener('click', (e) => {
       const idx = parseInt(btn.dataset.index, 10) || 0;
       openAt(idx);
-    });
-  });
+    }));
 
-  if (btnClose) btnClose.addEventListener('click', closeGallery);
-  if (btnPrev) btnPrev.addEventListener('click', () => openAt(current - 1));
-  if (btnNext) btnNext.addEventListener('click', () => openAt(current + 1));
+    if (btnClose) btnClose.addEventListener('click', closeGallery);
+    if (btnPrev) btnPrev.addEventListener('click', () => openAt(current - 1));
+    if (btnNext) btnNext.addEventListener('click', () => openAt(current + 1));
 
-  document.addEventListener('keydown', (e) => {
-    if (modal.getAttribute('aria-hidden') === 'false') {
-      if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowLeft') openAt(current - 1);
-      if (e.key === 'ArrowRight') openAt(current + 1);
-    }
-  });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeGallery();
-  });
-
-  // touch swipe
-  let startX = 0;
-  if (modalImg) {
-    modalImg.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-    modalImg.addEventListener('touchend', (e) => {
-      const dx = (e.changedTouches[0].clientX - startX);
-      if (dx > 40) openAt(current - 1);
-      else if (dx < -40) openAt(current + 1);
-    }, {passive:true});
-  }
-  // >>> Abrir/cerrar emergencia, capacitación y submit del formulario
-document.addEventListener('DOMContentLoaded', function(){
-  // EMERGENCIA modal
-  const reportBtn = document.getElementById('reportar-btn');
-  const emergenciaModal = document.getElementById('emergencia-modal');
-  const emergenciaClose = document.getElementById('emergencia-modal-close');
-  const overlay = document.getElementById('modal-overlay');
-
-  function openEmergencia(){
-    if(!emergenciaModal) return;
-    emergenciaModal.style.display = 'block';
-    emergenciaModal.setAttribute('aria-hidden','false');
-    if (overlay) overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    // mover foco al modal para accesibilidad
-    const firstFocusable = emergenciaModal.querySelector('a, button, input, [tabindex]');
-    if (firstFocusable) firstFocusable.focus();
-  }
-  function closeEmergencia(){
-    if(!emergenciaModal) return;
-    emergenciaModal.style.display = 'none';
-    emergenciaModal.setAttribute('aria-hidden','true');
-    if (overlay) overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-
-  if (reportBtn) reportBtn.addEventListener('click', openEmergencia);
-  if (emergenciaClose) emergenciaClose.addEventListener('click', closeEmergencia);
-  if (overlay) overlay.addEventListener('click', closeEmergencia);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEmergencia(); });
-
-  // CAPACITACIÓN modal (si existe)
-  const capBtn = document.getElementById('capacitacion-link');
-  const capModal = document.getElementById('capacitacion-modal');
-  const capClose = document.getElementById('capacitacion-modal-close');
-  if (capBtn && capModal) {
-    capBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      capModal.style.display = 'block';
-      capModal.setAttribute('aria-hidden','false');
-      if (overlay) overlay.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      const f = capModal.querySelector('a,button,input,[tabindex]');
-      if (f) f.focus();
-    });
-  }
-  if (capClose) capClose.addEventListener('click', function(){
-    if (!capModal) return;
-    capModal.style.display = 'none';
-    capModal.setAttribute('aria-hidden','true');
-    if (overlay) overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  });
-
-  // FORMULARIO: enviar a /api/contact
-  const joinForm = document.getElementById('join-form');
-  const successMsg = document.getElementById('form-success');
-  if (joinForm) {
-    joinForm.addEventListener('submit', async function(e){
-      e.preventDefault();
-      const payload = {
-        nombre: this.nombre?.value || '',
-        correo: this.correo?.value || '',
-        telefono: this.telefono?.value || '',
-        delegacion: this.delegacion?.value || '',
-        mensaje: 'Solicitud de incorporación (formulario web)'
-      };
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(payload)
-        });
-        const j = await res.json();
-        if (!res.ok) throw new Error(j.error || 'Error enviando');
-        this.reset();
-        if (successMsg) { successMsg.style.display = 'block'; setTimeout(()=> successMsg.style.display='none',5000); }
-        alert('Solicitud enviada correctamente.');
-      } catch (err) {
-        alert('Error enviando formulario: ' + (err.message || err));
+    document.addEventListener('keydown', (e) => {
+      if (modal.getAttribute('aria-hidden') === 'false') {
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowLeft') openAt(current - 1);
+        if (e.key === 'ArrowRight') openAt(current + 1);
       }
     });
+
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeGallery(); });
+
+    // touch swipe
+    let startX = 0;
+    if (modalImg) {
+      modalImg.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
+      modalImg.addEventListener('touchend', (e) => {
+        const dx = (e.changedTouches[0].clientX - startX);
+        if (dx > 40) openAt(current - 1);
+        else if (dx < -40) openAt(current + 1);
+      }, {passive:true});
+    }
   }
-});
+
+  /* ---------------------------
+     Global overlay/escape behavior
+     --------------------------- */
+  function initGlobalClosers() {
+    if (modalOverlay) modalOverlay.addEventListener('click', closeAllModals);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(); });
+  }
+
+  /* ---------------------------
+     Helper: escapeHtml
+     --------------------------- */
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, function (s) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[s];
+    });
+  }
+
+  /* ---------------------------
+     Inicialización al DOM ready
+     --------------------------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    initTabs();
+    initHamburger();
+    initHeroAndFade();
+    initEmergency();
+    initJoinForm();
+    initFAQ();
+    initDelegacionesUI();
+    initLogin();
+    initGallery();
+    initGlobalClosers();
+
+    // Voluntario CTA
+    const voluntarioBtn = document.getElementById('voluntario-btn');
+    if (voluntarioBtn) voluntarioBtn.addEventListener('click', () => switchTab('contacto'));
+  });
 
 })();
-
-
