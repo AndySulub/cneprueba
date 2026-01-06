@@ -939,8 +939,8 @@ header.sticky {
   transition: color var(--transition);
 }
 
-tab-btn-footer.active,
-tab-btn-footer:hover {
+.tab-btn-footer.active,
+.tab-btn-footer:hover {
   color: var(--secondary);
 }
 .about-bg {
@@ -1033,7 +1033,7 @@ tab-btn-footer:hover {
   box-shadow: var(--shadow);
   padding: 16px 18px;
 }
-valores-title {
+.valores-title {
   font-size: 1.08em;
   margin-bottom: 8px;
 }
@@ -1055,14 +1055,8 @@ valores-title {
   margin-top: 22px;
 }
 
-@media (max-width: 900px) {
-  .about-wrapper-modern { flex-direction: column; gap: 28px; }
-  .about-img-modern { justify-content: center; }
-}
-
 /* ==========================================================================
    AÑADIDOS (galería, lightbox, helpers y reglas para modales accesibles)
-   Estas reglas fueron añadidas en la versión expandida.
    ========================================================================== */
 
 /* ====== GALERÍA (QUIENES SOMOS) ====== */
