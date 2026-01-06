@@ -1,11 +1,13 @@
-// script.js — versión completa y consolidada
-// Cambios solicitados:
-// - Eliminado flujo de login (no hay modal ni apertura de acceso delegado).
-// - El formulario de contacto abre mailto:cne.cen07@gmail.com con los datos y también intenta POST /api/contact en background.
-// - Conservé exactamente delegacionesData tal y como lo pegaste.
+// script.js — versión corregida, consolidada y completa
+// - Corrige error que impedía registrar listeners y cambiar pestañas.
+// - Envío mailto a cne.cen07@gmail.com y POST opcional a /api/contact.
+// - Delegaciones data incluida (sin cambios en claves).
 
 (function () {
   'use strict';
+
+  // Wrap in try/catch to avoid runtime exceptions que bloqueen todo
+  try {
 
   /* ---------------------------
      Utilidades para modales/overlay
@@ -53,13 +55,28 @@
     });
     document.querySelectorAll('.tab-section').forEach(sec => {
       sec.classList.toggle('active', sec.id === tabName);
-      if (sec.id === tabName) window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (sec.id === tabName) {
+        // small delay to allow CSS animation to run smoothly
+        setTimeout(()=> { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 10);
+      }
     });
   }
 
   function initTabs() {
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
-    document.querySelectorAll('.tab-btn-footer').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabBtnsFooter = document.querySelectorAll('.tab-btn-footer');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const t = btn.dataset.tab;
+        if (t) switchTab(t);
+      });
+    });
+    tabBtnsFooter.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const t = btn.dataset.tab;
+        if (t) switchTab(t);
+      });
+    });
   }
 
   function initHamburger() {
@@ -102,7 +119,6 @@
     const emergenciaModal = document.getElementById('emergencia-modal');
     const emergenciaModalClose = document.getElementById('emergencia-modal-close');
 
-    // Ensure hidden by default
     if (emergenciaModal && emergenciaModal.getAttribute('aria-hidden') === 'true') emergenciaModal.style.display = 'none';
 
     function openEmergencia(e) {
@@ -211,7 +227,7 @@
   }
 
   /* ==========================================================================
-     Delegaciones data (USADA EXACTAMENTE COMO LA PROVISTA POR TI)
+     Delegaciones data (USADA EXACTAMENTE COMO LA PROVISTA)
      ========================================================================== */
   const delegacionesData = {
   PETO: {
@@ -392,8 +408,8 @@
       { numeral: "3412", cargo: "COMUNICACIONES", nombre: "RAMIRO MATA CRUZ" },
       { numeral: "3413", cargo: "SOCIO ACTIVO", nombre: "ANA BERTHA RIVERO JIMENEZ" },
       { numeral: "3414", cargo: "SOCIO ACTIVO", nombre: "ELPIDIO GUTIERREZ NICOLAS" },
-      { numeral: "3451", cargo: "BRIGADA JUVENIL", nombre: "DEREK ZAHIR VAZQUEZ AREVALO" },
-      { numeral: "3452", cargo: "BRIGADA JUVENIL", nombre: "NOEMI ROSALBAKU CAB" },
+      { numeral: "3451", cargo: "BRIGADA JUVENIL", nombre: "DEREK ZAHIR VAZQUEZ AREVALO" }
+      ,{ numeral: "3452", cargo: "BRIGADA JUVENIL", nombre: "NOEMI ROSALBAKU CAB" },
       { numeral: "3453", cargo: "BRIGADA JUVENIL", nombre: "CARLA ALEJANDRA CAMBRANO MAYO" }
     ]
   },
@@ -415,7 +431,6 @@
       { numeral: "3704", cargo: "TESORERO", nombre: "JAIRO HERNANDEZ SANTOS" },
       { numeral: "3705", cargo: "COMANDANTE", nombre: "SERGIO SUAREZ CAAMAL" },
       { numeral: "3750", cargo: "Elemento Honorario", nombre: "LEOPOLDO NAREZ MACIE" }
-      
     ]
   },
   KANTUNILKIN: {
@@ -479,10 +494,10 @@
     nombre: "División Fénix",
     foto: "img/fenix.jpg",
     miembros: [
-      { numeral: "F1", cargo: "COORDINADOR DE AMBULANCIAS", nombre: "JOSUE EMMANUEL AGUILAR CебАЛЛОС" },
+      { numeral: "F1", cargo: "COORDINADOR DE AMBULANCIAS", nombre: "JOSUE EMMANUEL AGUILAR CEBALLOS" },
       { numeral: "F2", cargo: "PARAMEDICO", nombre: "ADAN TAPIA AGUILAR" },
       { numeral: "F3", cargo: "OPERADOR - PARAMEDICO", nombre: "MISAEL ALEXIS BACELIS BALAM" },
-      { numeral: "F4", cargo: "OPERADOR - PARAMEDICO", nombre: "JOSE MARIA URZAIZ MONTES DE OCA " },
+      { numeral: "F4", cargo: "OPERADOR - PARAMEDICO", nombre: "JOSE MARIA URZAIZ MONTES DE OCA" },
       { numeral: "F5", cargo: "PARAMEDICO", nombre: "JOSÉ LUIS KANTÚ PAT" },
       { numeral: "F6", cargo: "OPERADOR - PARAMEDICO", nombre: "JORGE ABRAHAM MARTINEZ CHAVEZ" },
       { numeral: "F7", cargo: "PARAMEDICO", nombre: "SILVIA CAROLINA CANUL NAH" }
@@ -495,4 +510,193 @@
       { numeral: "5003", cargo: "MOVILES EN TRANSITO", nombre: "JUAN JOSE PASOS ECHAVARRIA" }
     ]
   }
-};
+  };
+
+  /* ---------------------------
+     Tooltip y eventos en puntos del mapa
+     --------------------------- */
+  function initDelegacionesUI() {
+    const delegTooltip = document.getElementById('deleg-tooltip');
+
+    document.querySelectorAll('.deleg-dot').forEach(dot => {
+      dot.addEventListener('mouseenter', function() {
+        const key = dot.dataset.deleg;
+        if (!delegTooltip) return;
+        delegTooltip.textContent = key || '';
+        delegTooltip.style.display = 'block';
+        delegTooltip.setAttribute('aria-hidden','false');
+        const svgRect = dot.ownerSVGElement.getBoundingClientRect();
+        const dotRect = dot.getBoundingClientRect();
+        let left = dotRect.left - svgRect.left + svgRect.width/2 - 60;
+        if (window.innerWidth < 600) left = 10;
+        delegTooltip.style.left = left + 'px';
+      });
+      dot.addEventListener('mouseleave', function() {
+        if (!delegTooltip) return;
+        delegTooltip.style.display = 'none';
+        delegTooltip.setAttribute('aria-hidden','true');
+      });
+      dot.addEventListener('click', function() {
+        showDelegModal(dot.dataset.deleg);
+      });
+    });
+
+    document.querySelectorAll('.deleg-link').forEach(btn => {
+      btn.addEventListener('click', function() {
+        showDelegModal(btn.dataset.deleg);
+      });
+    });
+
+    const delegModal = document.getElementById('deleg-modal');
+    const delegModalBody = document.getElementById('deleg-modal-body');
+    const delegModalClose = document.getElementById('deleg-modal-close');
+
+    function showDelegModal(key) {
+      const data = delegacionesData[key];
+      if (!data || !delegModalBody || !delegModal) return;
+      let html = '';
+      html += `<div class="deleg-modal-cabecera">
+        <img src="${data.foto}" alt="${data.nombre}" onerror="this.onerror=null;this.src='img/default-deleg.jpg'">
+        <h2>${escapeHtml(data.nombre)}</h2>
+      </div>`;
+      html += `<ul class="deleg-modal-miembros">`;
+      (data.miembros || []).forEach(m => {
+        html += `<li>
+          <img src="img/delegado1.jpg" alt="${escapeHtml(m.cargo)}" onerror="this.onerror=null;this.src='img/default-person.jpg'">
+          <div><strong>${escapeHtml(m.cargo)}${m.numeral ? ' (' + escapeHtml(m.numeral) + ')' : ''}:</strong> ${escapeHtml(m.nombre)}</div>
+        </li>`;
+      });
+      html += `</ul>`;
+      delegModalBody.innerHTML = html;
+      delegModal.style.display = 'flex';
+      delegModal.setAttribute('aria-hidden','false');
+      if (modalOverlay) modalOverlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (delegModalClose) delegModalClose.addEventListener('click', function() {
+      if (!delegModal) return;
+      delegModal.style.display = 'none';
+      delegModal.setAttribute('aria-hidden','true');
+      if (modalOverlay) modalOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    // expose
+    window.showDelegModal = showDelegModal;
+  }
+
+  /* ---------------------------
+     Galería / Lightbox
+     --------------------------- */
+  function initGallery() {
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const modal = document.getElementById('gallery-modal');
+    const modalImg = document.getElementById('gallery-modal-img');
+    const captionEl = document.getElementById('gallery-caption');
+    const btnClose = modal ? modal.querySelector('.gallery-close') : null;
+    const btnPrev = modal ? modal.querySelector('.gallery-prev') : null;
+    const btnNext = modal ? modal.querySelector('.gallery-next') : null;
+    if (!thumbs.length || !modal) return;
+
+    const images = Array.from(thumbs).map((btn, i) => {
+      const img = btn.querySelector('img');
+      return { src: img.getAttribute('src'), alt: img.getAttribute('alt') || '', index: i };
+    });
+
+    let current = 0;
+
+    function openAt(index) {
+      if (index < 0) index = images.length - 1;
+      if (index >= images.length) index = 0;
+      current = index;
+      modalImg.src = images[current].src;
+      modalImg.alt = images[current].alt;
+      captionEl.textContent = images[current].alt;
+      modal.setAttribute('aria-hidden', 'false');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      if (btnClose) btnClose.focus();
+    }
+
+    function closeGallery() {
+      modal.setAttribute('aria-hidden', 'true');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      modalImg.src = '';
+    }
+
+    thumbs.forEach(btn => btn.addEventListener('click', (e) => {
+      const idx = parseInt(btn.dataset.index, 10) || 0;
+      openAt(idx);
+    }));
+
+    if (btnClose) btnClose.addEventListener('click', closeGallery);
+    if (btnPrev) btnPrev.addEventListener('click', () => openAt(current - 1));
+    if (btnNext) btnNext.addEventListener('click', () => openAt(current + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (modal.getAttribute('aria-hidden') === 'false') {
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowLeft') openAt(current - 1);
+        if (e.key === 'ArrowRight') openAt(current + 1);
+      }
+    });
+
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeGallery(); });
+
+    // touch swipe
+    let startX = 0;
+    if (modalImg) {
+      modalImg.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
+      modalImg.addEventListener('touchend', (e) => {
+        const dx = (e.changedTouches[0].clientX - startX);
+        if (dx > 40) openAt(current - 1);
+        else if (dx < -40) openAt(current + 1);
+      }, {passive:true});
+    }
+  }
+
+  /* ---------------------------
+     Global overlay/escape behavior
+     --------------------------- */
+  function initGlobalClosers() {
+    if (modalOverlay) modalOverlay.addEventListener('click', closeAllModals);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(); });
+  }
+
+  /* ---------------------------
+     Helper: escapeHtml
+     --------------------------- */
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, function (s) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[s];
+    });
+  }
+
+  /* ---------------------------
+     Inicialización al DOM ready
+     --------------------------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    initTabs();
+    initHamburger();
+    initHeroAndFade();
+    initEmergency();
+    initJoinForm();
+    initFAQ();
+    initDelegacionesUI();
+    initGallery();
+    initGlobalClosers();
+
+    // Voluntario CTA
+    const voluntarioBtn = document.getElementById('voluntario-btn');
+    if (voluntarioBtn) voluntarioBtn.addEventListener('click', () => switchTab('contacto'));
+  });
+
+  } catch (err) {
+    // asegura que un error no rompa la UI; muéstralo en consola para depuración
+    console.error('Error initializing script.js:', err);
+  }
+
+})();
