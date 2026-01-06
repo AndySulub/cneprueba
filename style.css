@@ -1,7 +1,7 @@
 /* ==========================================================================
-   style.css — Versión expandida
-   Contenido: tu CSS original (restaurado) + mejoras añadidas (galería,
-   lightbox, pequeños helpers y reglas para modales accesibles).
+   style.css — Versión completa
+   Contenido: CSS restaurado y consolidado; incluye hero background actualizado
+   a img/wallpapercnel.jpg, reglas para modal, galería, accesibilidad y layout.
    ========================================================================== */
 
 /* ===== FONTS ===== */
@@ -25,11 +25,6 @@ body {
   --transition: 0.3s cubic-bezier(0.5,0,0.3,1);
 }
 
-/* --------------------------------------------------------------------------
-   Nota: agregué un "reset" ligero y optimizaciones (no borra nada del
-   CSS original; sólo añade compatibilidad). Si prefieres no incluirlo,
-   lo quitamos.
-   -------------------------------------------------------------------------- */
 /* ===== RESET RÁPIDO ===== */
 * {
   box-sizing: border-box;
@@ -255,11 +250,12 @@ header.sticky {
   overflow: hidden;
 }
 
+/* Hero background - updated to wallpapercnel.jpg */
 .hero-bg {
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: url(img/elementosfondo.jpeg) center center/cover no-repeat;
+  background: url('img/wallpapercnel.jpg') center center/cover no-repeat;
   filter: brightness(0.62);
   animation: fadeInBg 1.6s cubic-bezier(.32,.81,.45,1) forwards;
 }
@@ -940,7 +936,7 @@ header.sticky {
 }
 
 .tab-btn-footer.active,
-.tab-btn-footer:hover {
+tab-btn-footer:hover {
   color: var(--secondary);
 }
 .about-bg {
@@ -1127,6 +1123,5 @@ header.sticky {
 .modal .modal-content { max-width:720px; margin:48px auto; padding:20px; background:#fff; border-radius:12px; box-shadow:0 12px 48px rgba(0,0,0,0.18); }
 
 /* ========================================================================== */
-/* FIN style.css expandido                                                      */
-
+/* FIN style.css                                                               */
 /* ========================================================================== */
