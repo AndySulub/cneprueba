@@ -408,9 +408,9 @@
       { numeral: "3412", cargo: "COMUNICACIONES", nombre: "RAMIRO MATA CRUZ" },
       { numeral: "3413", cargo: "SOCIO ACTIVO", nombre: "ANA BERTHA RIVERO JIMENEZ" },
       { numeral: "3414", cargo: "SOCIO ACTIVO", nombre: "ELPIDIO GUTIERREZ NICOLAS" },
+      { numeral: "3415", cargo: "SOCIO ACTIVO", nombre: "NORBERTHA MENDEZ DIAZ" },
+      { numeral: "3416", cargo: "SOCIO ACTIVO", nombre: "MIGUEL ADRIAN ALAMILLA CANTUN" },
       { numeral: "3451", cargo: "BRIGADA JUVENIL", nombre: "DEREK ZAHIR VAZQUEZ AREVALO" }
-      ,{ numeral: "3452", cargo: "BRIGADA JUVENIL", nombre: "NOEMI ROSALBAKU CAB" },
-      { numeral: "3453", cargo: "BRIGADA JUVENIL", nombre: "CARLA ALEJANDRA CAMBRANO MAYO" }
     ]
   },
   MERIDA: {
@@ -700,3 +700,4 @@
   }
 
 })();
+
