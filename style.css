@@ -255,7 +255,7 @@ header.sticky {
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: url('img//pp2.png') center center/cover no-repeat;
+  background: url('img//pp3.png') center center/cover no-repeat;
   filter: brightness(0.62);
   animation: fadeInBg 1.6s cubic-bezier(.32,.81,.45,1) forwards;
 }
@@ -1125,6 +1125,7 @@ tab-btn-footer:hover {
 /* ========================================================================== */
 /* FIN style.css                                                               */
 /* ========================================================================== */
+
 
 
 
