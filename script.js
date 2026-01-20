@@ -227,18 +227,8 @@
       foto: "img/peto.jpg",
       facebook: "", // ej: "https://facebook.com/cne.peto"
       miembros: [
-        { numeral: "301", cargo: "DELEGADO", nombre: "JOSÉ ANTONIO CIAU BRICEÑO" },
         { numeral: "302", cargo: "SUBDELEGADO", nombre: "JOSÉ ISAURO HOIL PAT" },
-        { numeral: "303", cargo: "SECRETARIO", nombre: "VICTOR MANUEL CABRERA QUINTAL" },
-        { numeral: "304", cargo: "TESORERO", nombre: "WILLIAM SANTOS CAACH" },
         { numeral: "305", cargo: "COMANDANTE", nombre: "CORNELIO CANUL PÉREZ" },
-        { numeral: "306", cargo: "SUBCOMANDANTE", nombre: "JOSÉ EMMANUEL CIAU ARANA" },
-        { numeral: "307", cargo: "COMUNICACIONES", nombre: "GUIMEL ANTONIO CIAU ARANA" },
-        { numeral: "308", cargo: "SOCIO ACTIVO", nombre: "RODOLFO SÁNCHEZ CRUZ" },
-        { numeral: "310", cargo: "SOCIO ACTIVO", nombre: "MARLENE MOGUEL UC" },
-        { numeral: "313", cargo: "SOCIO ACTIVO", nombre: "EMERZON ÁVALOS SARABIA" },
-        { numeral: "314", cargo: "SOCIO ACTIVO", nombre: "ÁNGEL AUGUSTO RIVERO ESQUIVEL" },
-        { numeral: "315", cargo: "SOCIO ACTIVO", nombre: "LUIS FERNANDO CASTILLO ESQUIVEL" }
       ]
     },
     PROGRESO: {
@@ -252,22 +242,29 @@
         { numeral: "505", cargo: "COMANDANTE", nombre: "JOSUE ARMANDO BLEE ALCAZAR" },
         { numeral: "507", cargo: "COMUNICACIONES", nombre: "JUAN RODRIGO RODRIGUEZ GOMEZ" },
         { numeral: "508", cargo: "VIALIDAD", nombre: "RICARDO ANTONIO FLORES TREJO" },
-        { numeral: "510", cargo: "SOCORRISTA", nombre: "CARMEN MARISOL CHAVEZ IBARRA" },
         { numeral: "509", cargo: "PARAMEDICO", nombre: "CARLOS JESUS MOJON LUNA" },
-        { numeral: "551", cargo: "ALFA", nombre: "CRISTIAN ARTURO PEREZ POOL" },
-        { numeral: "553", cargo: "ALFA", nombre: "WENDY BEATRIZ FLORES MOLINA" }
+        { numeral: "510", cargo: "SOCORRISTA", nombre: "ALESMI SILOE HERNANDEZ PECH" },
+        { numeral: "551", cargo: "ALFA", nombre: "CARLOS ALFONSO GUERREO NAH" },
       ]
     },
-    PISTE: {
-      nombre: "Pisté, Yucatán",
-      foto: "img/piste.jpg",
+    MOTUL: {
+      nombre: "MOTUL, Yucatán",
+      foto: "img/MOTUL.jpg",
       facebook: "",
       miembros: [
-        { numeral: "601", cargo: "DELEGADA", nombre: "GLADEMI MARGARITA TUN PECH" },
-        { numeral: "602", cargo: "SUBDELEGADO", nombre: "JESUS FRANCISCO TUN HERRERA" },
-        { numeral: "603", cargo: "SECRETARIO", nombre: "JORGE EMMANUEL GONZALEZ MARRUFO" },
-        { numeral: "563", cargo: "BRIGADA JUVENIL", nombre: "JAVIER DE JESUS DZIB PECH" },
-        { numeral: "652", cargo: "BRIGADA JUVENIL", nombre: "MELISSA SAYURI DZIB TUN" }
+        { numeral: "101", cargo: "DELEGADO", nombre: "JOSHUA ESTEBAN QUIJANO VILLASIS" },
+        { numeral: "102", cargo: "SUBDELEGADO", nombre: "JOSE LUIS QUIJANO GUTIERREZ" },
+        { numeral: "103", cargo: "SECRETARIO", nombre: "JADE MICHELLE JUAREZ HERRERA" },
+        { numeral: "105", cargo: "COMANDANTE", nombre: "JORGE FRANCISCO BOTE MAY" },
+        { numeral: "106", cargo: "SOCIO ACTIVO", nombre: "EXALTACION DE LA CRUZ ACOSTA PINTO" },
+        { numeral: "112", cargo: "SOCIO ACTIVO", nombre: "JESUS ADRIAN CRESPO PAN " },
+        { numeral: "113", cargo: "SOCIO ACTIVO", nombre: "YAIR ARIDAI CAN CAUICH" },
+        { numeral: "114", cargo: "SOCIO ACTIVO", nombre: "GABRIELA YAMILET ALDUCÍN LUNA" },
+        { numeral: "115", cargo: "SOCIO ACTIVO", nombre: "ADELINA EK COLLI " },
+        { numeral: "116", cargo: "SOCIO ACTIVO", nombre: "NAJAVI ESMERALDA ARAGON CHALE " },
+        { numeral: "117", cargo: "SOCIO ACTIVO", nombre: "GENESIS REBECA BOTE EK " },
+        { numeral: "118", cargo: "SOCIO ACTIVO", nombre: "KELVIN JAFET CAMAAL MAY" },
+
       ]
     },
     FCP: {
@@ -719,6 +716,7 @@
   }
 
 })();
+
 
 
 
