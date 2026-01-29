@@ -227,8 +227,13 @@
       foto: "img/peto.jpg",
       facebook: "", // ej: "https://facebook.com/cne.peto"
       miembros: [
+        { numeral: "301", cargo: "DELEGADO", nombre: "JOSÉ ANTONIO CIAU BRICEÑO" },
         { numeral: "302", cargo: "SUBDELEGADO", nombre: "JOSÉ ISAURO HOIL PAT" },
         { numeral: "305", cargo: "COMANDANTE", nombre: "CORNELIO CANUL PÉREZ" },
+        { numeral: "306", cargo: "SUBCOMANDANTE", nombre: "JOSÉ EMMANUEL CIAU ARANA" },
+        { numeral: "307", cargo: "COMUNICACIONES", nombre: "GUIMEL ANTONIO CIAU ARANA" },
+        { numeral: "308", cargo: "SOCIO ACTIVO", nombre: "EMERZON AVALOS SARABIA" },
+        
       ]
     },
     PROGRESO: {
@@ -510,7 +515,12 @@
       foto: "img/moviles.jpg",
       facebook: "",
       miembros: [
-        { numeral: "5003", cargo: "MOVILES EN TRANSITO", nombre: "JUAN JOSE PASOS ECHAVARRIA" }
+        { numeral: "5001", cargo: "MOVILES EN TRANSITO", nombre: "ROMUALDO PAZ CAB" },
+        { numeral: "5002", cargo: "MOVILES EN TRANSITO", nombre: "FERNANDO MARTINEZ RODRIGUEZ" },
+        { numeral: "5003", cargo: "MOVILES EN TRANSITO", nombre: "JUAN JOSE PASOS ECHAVARRIA" },
+        { numeral: "5004", cargo: "MOVILES EN TRANSITO", nombre: "AGUISTIN HILARIO ROCHA RAMIREZ" },
+        { numeral: "5005", cargo: "MOVILES EN TRANSITO", nombre: "JUAN MANUEL FLORES CAMPOS" },
+        { numeral: "5006", cargo: "MOVILES EN TRANSITO", nombre: "RENE ARIEL I. POOL PUGA" },
       ]
     }
   };
@@ -716,6 +726,7 @@
   }
 
 })();
+
 
 
 
