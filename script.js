@@ -468,7 +468,6 @@
         { numeral: "3605", cargo: "COMANDANTE", nombre: "ABEL MENDEZ HERNANDEZ" },
         { numeral: "3606", cargo: "SUBCOMANDANTE", nombre: "JESUS URIEL MENDEZ HERNANDEZ" },
         { numeral: "3607", cargo: "RADIOCOMUNICACION", nombre: "LAURO LEON MEDINA" },
-        { numeral: "3612", cargo: "SOCIO ACTIVO", nombre: "VALENTIN UTRERA VERGARA" },
         { numeral: "3613", cargo: "SOCIO ACTIVO", nombre: "MARIO ROBERTO LUNA MARTINEZ" }
       ]
     },
@@ -726,6 +725,7 @@
   }
 
 })();
+
 
 
 
