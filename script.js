@@ -415,14 +415,14 @@
         { numeral: "3453", cargo: "BRIGADA JUVENIL", nombre: "CARLA ALEJANDRA CAMBRANO MAYO" }
       ]
     },
-    MERIDA: {
+    /*MERIDA: {
       nombre: "Mérida, Yucatán",
       foto: "img/merida.jpg",
       facebook: "",
       miembros: [
         { numeral: "UA1", cargo: "UNIDAD DE APOYO", nombre: "JUAN LUIS VERA LORIA" },
         { numeral: "UA2", cargo: "UNIDAD DE APOYO", nombre: "WILLIAM HAAS CHAVEZ" }
-      ]
+      ]*/
     },
     JMM: {
       nombre: "José María Morelos, Q. Roo",
@@ -725,6 +725,7 @@
   }
 
 })();
+
 
 
 
