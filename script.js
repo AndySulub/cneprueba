@@ -415,6 +415,7 @@
         { numeral: "3453", cargo: "BRIGADA JUVENIL", nombre: "CARLA ALEJANDRA CAMBRANO MAYO" }
       ]
     },
+    /* MERIDA - DELEGACIÓN INACTIVA
     MERIDA: {
       nombre: "Mérida, Yucatán",
       foto: "img/merida.jpg",
@@ -424,6 +425,7 @@
         { numeral: "UA2", cargo: "UNIDAD DE APOYO", nombre: "WILLIAM HAAS CHAVEZ" }
       ]
     },
+    */
     JMM: {
       nombre: "José María Morelos, Q. Roo",
       foto: "img/jmm.jpg",
@@ -725,14 +727,3 @@
   }
 
 })();
-
-
-
-
-
-
-
-
-
-
-
