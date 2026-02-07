@@ -313,7 +313,7 @@
     CANCUN: {
       nombre: "Cancún, Q. Roo",
       foto: "img/cancun.jpg",
-      facebook: "",
+      facebook: "https://www.facebook.com/share/16ngVXYd3a/?mibextid=wwXIfr",
       miembros: [
         { numeral: "3101", cargo: "DELEGADO", nombre: "ROGER ALONSO OSORIO SALAZAR" },
         { numeral: "3102", cargo: "SUBDELEGADO", nombre: "ROBERTO JOEL FERNÁNDEZ ARREOLA" },
@@ -366,7 +366,7 @@
     COZUMEL: {
       nombre: "Cozumel, Q. Roo",
       foto: "img/cozumel.jpg",
-      facebook: "",
+      facebook: "https://www.facebook.com/share/1CEpPXHoDD/?mibextid=wwXIfr",
       miembros: [
         { numeral: "3301", cargo: "DELEGADO", nombre: "NOE GUADALUPE SAMARRIPA EUAN" },
         { numeral: "3302", cargo: "SUBDELEGADO", nombre: "TEDDY DE JESUS TUN ORTIZ" },
@@ -725,6 +725,7 @@
   }
 
 })();
+
 
 
 
