@@ -248,8 +248,10 @@
         { numeral: "507", cargo: "COMUNICACIONES", nombre: "JUAN RODRIGO RODRIGUEZ GOMEZ" },
         { numeral: "508", cargo: "VIALIDAD", nombre: "RICARDO ANTONIO FLORES TREJO" },
         { numeral: "509", cargo: "PARAMEDICO", nombre: "CARLOS JESUS MOJON LUNA" },
-        { numeral: "510", cargo: "SOCORRISTA", nombre: "ALESMI SILOE HERNANDEZ PECH" },
-        { numeral: "551", cargo: "ALFA", nombre: "CARLOS ALFONSO GUERREO NAH" },
+        { numeral: "510", cargo: "SOCORRISMO", nombre: "ALESMI SILOE HERNANDEZ PECH" },
+        { numeral: "513", cargo: "SOCIO ACTIVO", nombre: "ALEXANDER RUBISEL PINTO VENTURA" },
+        { numeral: "552", cargo: "BRIGADA JUVENIL", nombre: "PAUL PATRICIO PEREZ POOL" },
+        { numeral: "551", cargo: "ALFA", nombre: "CARLOS ALFONSO GUERRERO NAH" },
       ]
     },
     MOTUL: {
@@ -284,7 +286,7 @@
         { numeral: "3005", cargo: "COMANDANTE", nombre: "JUAN CARLOS MEDINA NOVELO" },
         { numeral: "3006", cargo: "SUBCOMANDANTE", nombre: "CESAR MARTINEZ SOSA" },
         { numeral: "3007", cargo: "RADIOCOMUNICACION", nombre: "ARNULFO MAY TZUC" },
-        { numeral: "3008", cargo: "Vialidad", nombre: "Andy J. SULUB MARTIN" },
+        { numeral: "3008", cargo: "Vialidad", nombre: "Andy JESUS SULUB MARTIN" },
         { numeral: "3010", cargo: "SOCORRISTA", nombre: "MANUEL ANTONIO MUKUL NOH" },
         { numeral: "3011", cargo: "RESCATE", nombre: "RITA YANET MARTIN VAZQUEZ" },
         { numeral: "3012", cargo: "COMUNICACIONES", nombre: "JOSE EDILBERTO XIU YAM" },
@@ -322,7 +324,7 @@
         { numeral: "3106", cargo: "SUBCOMANDANTE", nombre: "BERNARDO CAAMAL POOT" },
         { numeral: "3107", cargo: "RADIOCOMUNICACION", nombre: "GUIDO MENDIBURU SOLIS" },
         { numeral: "3108", cargo: "VIALIDAD", nombre: "DAVID MUÑOZ RIVERA" },
-        { numeral: "3112", cargo: "SOCIO ACTIVO", nombre: "WALTER FRANCISCO ONTIVEROS" },
+        { numeral: "3112", cargo: "SOCIO ACTIVO", nombre: "WALTERIO FRANCISCO ONTIVEROS" },
         { numeral: "3113", cargo: "SOCIO ACTIVO", nombre: "FREDDY ANTHONY VAZQUEZ MORALES " },
         { numeral: "3114", cargo: "SOCIO ACTIVO", nombre: "CARLOS RUBEN ORDOÑES AGUILANDO" },
         { numeral: "3115", cargo: "SOCIO ACTIVO", nombre: "LEONARDO ERMILO VASQUEZ LORIAI" },
@@ -360,7 +362,10 @@
         { numeral: "3224", cargo: "SOCIO ACTIVO", nombre: "LUIS HERNANDEZ PABLO" },
         { numeral: "3225", cargo: "SOCIO ACTIVO", nombre: "MARIO ERNESTO RAMOS CRUZ" },
         { numeral: "3226", cargo: "SOCIO ACTIVO", nombre: "JAVIER JESUS SALGADO CHAVEZ" },
+        { numeral: "3240", cargo: "SOCIO HONORARIO", nombre: "IRVIN FABIAN PORRAS BAUTISTA" },
+        { numeral: "3211", cargo: "SOCIO HONORARIO", nombre: "MANUEL FELIPE BAUTISTA MENDOZA" },
         { numeral: "3251", cargo: "BRIGADA JUVENIL", nombre: "JADE ADILENE VERGARA QUIÑONEZ" }
+        
       ]
     },
     COZUMEL: {
@@ -411,8 +416,6 @@
         { numeral: "3413", cargo: "SOCIO ACTIVO", nombre: "ANA BERTHA RIVERO JIMENEZ" },
         { numeral: "3414", cargo: "SOCIO ACTIVO", nombre: "ELPIDIO GUTIERREZ NICOLAS" },
         { numeral: "3451", cargo: "BRIGADA JUVENIL", nombre: "DEREK ZAHIR VAZQUEZ AREVALO" },
-        { numeral: "3452", cargo: "BRIGADA JUVENIL", nombre: "NOEMI ROSALBAKU CAB" },
-        { numeral: "3453", cargo: "BRIGADA JUVENIL", nombre: "CARLA ALEJANDRA CAMBRANO MAYO" }
       ]
     },
     /* MERIDA - DELEGACIÓN INACTIVA
@@ -454,6 +457,8 @@
         { numeral: "3510", cargo: "SOCORRISMO", nombre: "LUIS FELIPE CANUL POOT" },
         { numeral: "3511", cargo: "RESCATE", nombre: "DESIDERIO PECH PECH" },
         { numeral: "3512", cargo: "SOCIO ACTIVO", nombre: "JORGE EDUARDO CHI PECH" },
+        { numeral: "3513", cargo: "SOCIO ACTIVO", nombre: "FELIPE DE JESUS PECH DZUL" },
+        { numeral: "3540", cargo: "MOVILES EN TRANSITO", nombre: "RENE ARIEL I. POOL PUGA" },
         { numeral: "3551", cargo: "BRIGADA JUVENIL", nombre: "ALEXIS GAEL CAUICH CONTRERAS" },
         { numeral: "3552", cargo: "BRIGADA JUVENIL", nombre: "AARON BLADIMIR CAUICH CONTRERAS" }
       ]
@@ -480,21 +485,16 @@
       miembros: [
         { numeral: "4001", cargo: "DELEGADO", nombre: "WILLIAM RAFAEL PUC UC" },
         { numeral: "4002", cargo: "SUBDELEGADO", nombre: "MATEO ORDOÑEZ KANTUN" },
-        { numeral: "4003", cargo: "SECRETARIO", nombre: "CARLOS ANTONIO CHE OROZCO" },
+        { numeral: "4003", cargo: "SECRETARIO", nombre: "VICTOR GABRIEL BALAM CIH" },
         { numeral: "4004", cargo: "TESORERO", nombre: "ATOCHA DE LA CRUZ PECH BALAM" },
         { numeral: "4005", cargo: "COMANDANTE", nombre: "WILIAN SANTIAGO PUC TUN" },
-        { numeral: "4006", cargo: "SUBCOMANDANTE", nombre: "VICTOR GABRIEL BALAM CIH" },
-        { numeral: "4007", cargo: "RADIOCOMUNICACION", nombre: "JUAN PORFIRIO REYNA HUCHIN" },
+        { numeral: "4006", cargo: "SUBCOMANDANTE", nombre: "CARLOS ANTONIO CHE OROZCO" },
+        { numeral: "4007", cargo: "RADIOCOMUNICACION", nombre: "FABIO ALBERTO CAUICH SOSA" },
         { numeral: "4008", cargo: "SOCIO ACTIVO", nombre: "SERGIO RAUL ALEGRIA FERRERA" },
         { numeral: "4009", cargo: "AUXILIO MECANICO", nombre: "ENRIQUE MANUEL LOPEZ SOSA" },
         { numeral: "4010", cargo: "SOCORRISMO", nombre: "MARIA CANDELARIA UC HUCHIN" },
-        { numeral: "4011", cargo: "RESCATE", nombre: "FREDY ALFONSO CHAN AKE" },
-        { numeral: "4012", cargo: "SOCIO ACTIVO", nombre: "REYNALDO ISAIAS GONZALEZ NOH" },
-        { numeral: "4013", cargo: "SOCIO ACTIVO", nombre: "VANESSA DEL ROSARIO AVILA CEN" },
-        { numeral: "4014", cargo: "SOCIO ACTIVO", nombre: "ROSENDA DEL ROCIO COB HUCHIN" },
-        { numeral: "4051", cargo: "BRIGADA JUVENIL", nombre: "MARICARMEN CHE AVILA" },
-        { numeral: "4052", cargo: "BRIGADA JUVENIL", nombre: "RENATA YAZURY CHE AVILA" },
-        { numeral: "4053", cargo: "BRIGADA JUVENIL", nombre: "JUAN PABLO PECH COB" }
+        { numeral: "4011", cargo: "SOCIO ACTIVO", nombre: "ROSENDA DEL ROCIO COB HUCHIN" },
+        { numeral: "4012", cargo: "SOCIO ACTIVO", nombre: "JOSE EDILBERTO COB CHI" },
       ]
     },
     DIVISION_FENIX: {
@@ -519,9 +519,11 @@
         { numeral: "5001", cargo: "MOVILES EN TRANSITO", nombre: "ROMUALDO PAZ CAB" },
         { numeral: "5002", cargo: "MOVILES EN TRANSITO", nombre: "FERNANDO MARTINEZ RODRIGUEZ" },
         { numeral: "5003", cargo: "MOVILES EN TRANSITO", nombre: "JUAN JOSE PASOS ECHAVARRIA" },
-        { numeral: "5004", cargo: "MOVILES EN TRANSITO", nombre: "AGUISTIN HILARIO ROCHA RAMIREZ" },
         { numeral: "5005", cargo: "MOVILES EN TRANSITO", nombre: "JUAN MANUEL FLORES CAMPOS" },
         { numeral: "5006", cargo: "MOVILES EN TRANSITO", nombre: "RENE ARIEL I. POOL PUGA" },
+        { numeral: "3151", cargo: "MOVILES EN TRANSITO", nombre: "AMILCAR ALONZO KUYOC CAB" },
+        { numeral: "3540", cargo: "MOVILES EN TRANSITO", nombre: "RENE ARIEL I. POOL PUGA" },
+        
       ]
     }
   };
@@ -727,3 +729,4 @@
   }
 
 })();
+
