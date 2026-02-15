@@ -239,7 +239,7 @@
     PROGRESO: {
       nombre: "Progreso, Yucatán",
       foto: "img/progreso.jpg",
-      facebook: "",
+      facebook: "https://www.facebook.com/share/1C4KrGNTjX/?mibextid=wwXIfr",
       miembros: [
         { numeral: "501", cargo: "DELEGADO", nombre: "ARTURO VALENTE PEREZ NUÑEZ" },
         { numeral: "503", cargo: "SECRETARIA", nombre: "PATRICIA ESTEFANY POOL SULUB" },
@@ -257,7 +257,7 @@
     MOTUL: {
       nombre: "MOTUL, Yucatán",
       foto: "img/MOTUL.jpg",
-      facebook: "",
+      facebook: "https://www.facebook.com/share/1CWRtyiZoh/?mibextid=wwXIfr",
       miembros: [
         { numeral: "101", cargo: "DELEGADO", nombre: "JOSHUA ESTEBAN QUIJANO VILLASIS" },
         { numeral: "102", cargo: "SUBDELEGADO", nombre: "JOSE LUIS QUIJANO GUTIERREZ" },
@@ -729,4 +729,5 @@
   }
 
 })();
+
 
