@@ -653,6 +653,20 @@ header.sticky {
   margin-top: 38px;
 }
 .news-edit-bar {text-align: right; margin-bottom: 18px;}
+.news-modal-content {
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+#news-grid {
+  min-height: 200px;
+}
+.news-read-more {
+  transition: color 0.3s ease;
+}
+.news-read-more:hover {
+  color: #d4a023 !important;
+}
 
 .join-section h2 {
   text-align: center;
@@ -922,6 +936,10 @@ header.sticky {
     margin-top: 24px;
   }
   .cen-members {flex-direction: column; align-items: center;}
+  .news-modal-content {
+    max-width: 95vw;
+    max-height: 90vh;
+  }
 }
 
 .tab-btn-footer {
@@ -1052,10 +1070,8 @@ tab-btn-footer:hover {
 }
 
 /* ==========================================================================
-   AÑADIDOS (galería, lightbox, helpers y reglas para modales accesibles)
+   GALERÍA (QUIENES SOMOS)
    ========================================================================== */
-
-/* ====== GALERÍA (QUIENES SOMOS) ====== */
 .about-gallery { width:100%; display:block; }
 .gallery-grid { display:grid; grid-template-columns: repeat(1,1fr); gap:12px; align-items:center; justify-items:center; }
 @media (min-width:560px) { .gallery-grid { grid-template-columns: repeat(2,1fr); } }
@@ -1080,13 +1096,9 @@ tab-btn-footer:hover {
 @media (max-width:640px) { .gallery-thumb img { height:140px; } .gallery-prev, .gallery-next { display:none; } }
 
 /* ===== Helpers y mejoras accesibilidad ===== */
-/* Mostrar modal cuando JS establezca aria-hidden="false" */
 .modal[aria-hidden="false"] { display: flex; }
-/* Tooltip accesible */
 .deleg-tooltip[aria-hidden="false"] { display: block; }
 
-/* ===== Reglas de fallback visual (si quieres ajustar) ===== */
-/* Si no quieres bordes redondeados en las imágenes del modal, cambia aquí */
 .deleg-modal-cabecera img, .deleg-modal-miembros img { border-radius: 50%; }
 
 /* Emergency banner & buttons */
@@ -1114,10 +1126,7 @@ tab-btn-footer:hover {
   .emergency-buttons .banner-btn { width:100%; text-align:center; }
 }
 
-/* Modal overlay already exists as #modal-overlay; ensure it covers screen */
 #modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:999; }
-
-/* Ensure modals are hidden by default (if not already) */
 .modal[aria-hidden="true"] { display:none; }
 .modal[aria-hidden="false"] { display:block; z-index:1000; }
 .modal .modal-content { max-width:720px; margin:48px auto; padding:20px; background:#fff; border-radius:12px; box-shadow:0 12px 48px rgba(0,0,0,0.18); }
@@ -1125,7 +1134,3 @@ tab-btn-footer:hover {
 /* ========================================================================== */
 /* FIN style.css                                                               */
 /* ========================================================================== */
-
-
-
-
