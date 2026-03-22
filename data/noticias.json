@@ -1,0 +1,50 @@
+{
+  "noticias": [
+    {
+      "id": 1,
+      "titulo": "IMPARTEN CURSO DE PRIMEROS AUXILIOS A PERSONAL DE LA JURISDICCIÓN SANITARIA #3",
+      "fecha": "19 Mar 2026",
+      "lugar": "Felipe Carrillo Puerto, Q. Roo",
+      "imagen": "img/primeros-auxilios-fcp.jpg",
+      "resumen": "Delegación 30 impartió curso de primeros auxilios al personal de la Jurisdicción Sanitaria #3.",
+      "contenido": "La Delegación 30 llevó a cabo un curso de primeros auxilios dirigido al personal administrativo de la Jurisdicción Sanitaria No. 3, con el objetivo de fortalecer sus capacidades de respuesta ante situaciones de emergencia.\n\nLa capacitación se realizó el 19 de marzo en un horario de 8:00 a 14:00 horas, brindando conocimientos básicos y prácticos para actuar de manera oportuna en casos que pongan en riesgo la salud o la vida de las personas.\n\nCon este tipo de acciones, se busca fomentar una cultura de prevención y atención inmediata dentro de las instituciones, reforzando el compromiso del servicio público con la ciudadanía.",
+      "enlaces": {
+        "facebook": "https://www.facebook.com/share/p/1DeASNrTW5/?mibextid=wwXIfr"
+      },
+      "hashtags": ["#CNED30", "#ElQueNoViveParaServirNoSirveParaVivir"]
+    },
+    {
+      "id": 2,
+      "titulo": "Simulacro nacional: CNE participó exitosamente en coordinación con Protección Civil",
+      "fecha": "01 Oct 2025",
+      "lugar": "Nacional",
+      "imagen": "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+      "resumen": "Simulacro nacional: CNE participó exitosamente en coordinación con Protección Civil.",
+      "contenido": "La Comisión Nacional de Emergencia participó de manera exitosa en el simulacro nacional coordinado con Protección Civil, demostrando la capacidad de respuesta y coordinación de nuestros voluntarios.",
+      "enlaces": {},
+      "hashtags": ["#CNE", "#ProtecciónCivil"]
+    },
+    {
+      "id": 3,
+      "titulo": "Nuevos cursos de primeros auxilios disponibles en Quintana Roo",
+      "fecha": "18 Sep 2025",
+      "lugar": "Quintana Roo",
+      "imagen": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80",
+      "resumen": "Nuevos cursos de primeros auxilios disponibles en Quintana Roo.",
+      "contenido": "Se han abierto nuevas fechas para los cursos de primeros auxilios en las delegaciones de Quintana Roo. Para más información, contacta con tu delegación más cercana.",
+      "enlaces": {},
+      "hashtags": ["#Capacitación", "#PrimerosAuxilios"]
+    },
+    {
+      "id": 4,
+      "titulo": "Entrega de equipo y reconocimiento a voluntarios destacados",
+      "fecha": "05 Ago 2025",
+      "lugar": "Nacional",
+      "imagen": "https://images.unsplash.com/photo-1524492412937-4961d49ab7a3?auto=format&fit=crop&w=400&q=80",
+      "resumen": "Entrega de equipo y reconocimiento a voluntarios destacados.",
+      "contenido": "En ceremonia especial, se realizó la entrega de equipo y reconocimiento a voluntarios que han destacado por su dedicación y compromiso con la CNE.",
+      "enlaces": {},
+      "hashtags": ["#Voluntarios", "#Reconocimiento"]
+    }
+  ]
+}
