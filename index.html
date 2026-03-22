@@ -394,34 +394,22 @@
     <section id="noticias" class="tab-section">
       <div class="news-section section-padding">
         <h2>Noticias</h2>
-        <div class="news-grid">
-          <div class="news-card fade-in">
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Noticia 1">
-            <div class="news-info">
-              <span class="news-date">01 Oct 2025</span>
-              <p>Simulacro nacional: CNE participó exitosamente en coordinación con Protección Civil.</p>
-            </div>
-          </div>
-          <div class="news-card fade-in">
-            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="Noticia 2">
-            <div class="news-info">
-              <span class="news-date">18 Sep 2025</span>
-              <p>Nuevos cursos de primeros auxilios disponibles en Quintana Roo.</p>
-            </div>
-          </div>
-          <div class="news-card fade-in">
-            <img src="https://images.unsplash.com/photo-1524492412937-4961d49ab7a3?auto=format&fit=crop&w=400&q=80" alt="Noticia 3">
-            <div class="news-info">
-              <span class="news-date">05 Ago 2025</span>
-              <p>Entrega de equipo y reconocimiento a voluntarios destacados.</p>
-            </div>
-          </div>
+        <div class="news-grid" id="news-grid">
+          <!-- Noticias cargadas dinámicamente desde data/noticias.json -->
         </div>
         <div class="news-btn-wrapper">
-          <button class="btn-black">Ver más noticias</button>
+          <button class="btn-black" id="ver-mas-noticias">Ver más noticias</button>
         </div>
       </div>
     </section>
+
+    <!-- Modal para detalle de noticia -->
+    <div id="news-modal" class="modal" aria-hidden="true" role="dialog">
+      <div class="modal-content news-modal-content">
+        <button class="modal-close" id="news-modal-close" aria-label="Cerrar">&times;</button>
+        <div id="news-modal-body"></div>
+      </div>
+    </div>
 
     <!-- CONTACTO -->
     <section id="contacto" class="tab-section">
