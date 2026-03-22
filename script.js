@@ -1,9 +1,6 @@
-// script.js — versión con soporte para link de Facebook por delegación
-// - Al hacer clic en una delegación, el modal mostrará (si existe)
-//   un enlace de Facebook específico para esa delegación antes de la lista de miembros.
-// - Si quieres, reemplaza las cadenas vacías en delegacionesData.[KEY].facebook
-//   con las URLs reales de Facebook (ej. "https://facebook.com/mi-delegacion").
-// - El resto de comportamiento (modal, galería, formulario, etc.) se mantiene.
+// script.js — versión completa con soporte para noticias dinámicas desde JSON
+// Incluye: tabs, hamburger, hero animation, emergency modal, form validation,
+// FAQ, delegaciones, gallery, noticias dinámicas, y más
 
 (function () {
   'use strict';
@@ -254,7 +251,7 @@
         { numeral: "551", cargo: "ALFA", nombre: "CARLOS ALFONSO GUERRERO NAH" },
       ]
     },
-    MOTUL: {
+    PISTE: {
       nombre: "MOTUL, Yucatán",
       foto: "img/MOTUL.jpg",
       facebook: "https://www.facebook.com/share/1CWRtyiZoh/?mibextid=wwXIfr",
@@ -418,17 +415,6 @@
         { numeral: "3451", cargo: "BRIGADA JUVENIL", nombre: "DEREK ZAHIR VAZQUEZ AREVALO" },
       ]
     },
-    /* MERIDA - DELEGACIÓN INACTIVA
-    MERIDA: {
-      nombre: "Mérida, Yucatán",
-      foto: "img/merida.jpg",
-      facebook: "",
-      miembros: [
-        { numeral: "UA1", cargo: "UNIDAD DE APOYO", nombre: "JUAN LUIS VERA LORIA" },
-        { numeral: "UA2", cargo: "UNIDAD DE APOYO", nombre: "WILLIAM HAAS CHAVEZ" }
-      ]
-    },
-    */
     JMM: {
       nombre: "José María Morelos, Q. Roo",
       foto: "img/jmm.jpg",
@@ -685,6 +671,133 @@
   }
 
   /* ---------------------------
+     Cargar noticias desde JSON
+     --------------------------- */
+  function initNews() {
+    const newsGrid = document.getElementById('news-grid');
+    const newsModal = document.getElementById('news-modal');
+    const newsModalBody = document.getElementById('news-modal-body');
+    const newsModalClose = document.getElementById('news-modal-close');
+    const verMasBtn = document.getElementById('ver-mas-noticias');
+
+    if (!newsGrid) return;
+
+    fetch('data/noticias.json')
+      .then(res => {
+        if (!res.ok) throw new Error('No se pudo cargar noticias.json');
+        return res.json();
+      })
+      .then(data => {
+        const noticias = data.noticias || [];
+        
+        // Mostrar solo las primeras 3 noticias en el grid
+        noticias.slice(0, 3).forEach(noticia => {
+          const newsCard = document.createElement('div');
+          newsCard.className = 'news-card fade-in';
+          newsCard.innerHTML = `
+            <img src="${escapeAttr(noticia.imagen)}" alt="${escapeAttr(noticia.titulo)}" onerror="this.onerror=null;this.src='img/default-news.jpg'">
+            <div class="news-info">
+              <span class="news-date">${escapeHtml(noticia.fecha)}</span>
+              <p>${escapeHtml(noticia.resumen)}</p>
+              <button class="news-read-more" data-id="${noticia.id}" style="background:none;border:none;color:#c99d2f;cursor:pointer;font-weight:600;padding:0;margin-top:8px;">Leer más →</button>
+            </div>
+          `;
+          newsGrid.appendChild(newsCard);
+        });
+
+        // Event listeners para "Leer más"
+        document.querySelectorAll('.news-read-more').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const id = parseInt(this.dataset.id, 10);
+            const noticia = noticias.find(n => n.id === id);
+            if (noticia) showNewsModal(noticia);
+          });
+        });
+
+        // "Ver más noticias" muestra todas
+        if (verMasBtn) {
+          verMasBtn.addEventListener('click', () => {
+            newsGrid.innerHTML = '';
+            noticias.forEach(noticia => {
+              const newsCard = document.createElement('div');
+              newsCard.className = 'news-card fade-in';
+              newsCard.innerHTML = `
+                <img src="${escapeAttr(noticia.imagen)}" alt="${escapeAttr(noticia.titulo)}" onerror="this.onerror=null;this.src='img/default-news.jpg'">
+                <div class="news-info">
+                  <span class="news-date">${escapeHtml(noticia.fecha)}</span>
+                  <p>${escapeHtml(noticia.resumen)}</p>
+                  <button class="news-read-more" data-id="${noticia.id}" style="background:none;border:none;color:#c99d2f;cursor:pointer;font-weight:600;padding:0;margin-top:8px;">Leer más →</button>
+                </div>
+              `;
+              newsGrid.appendChild(newsCard);
+            });
+            document.querySelectorAll('.news-read-more').forEach(btn => {
+              btn.addEventListener('click', function() {
+                const id = parseInt(this.dataset.id, 10);
+                const noticia = noticias.find(n => n.id === id);
+                if (noticia) showNewsModal(noticia);
+              });
+            });
+            verMasBtn.style.display = 'none';
+          });
+        }
+      })
+      .catch(err => {
+        console.warn('Error cargando noticias:', err);
+        if (newsGrid) newsGrid.innerHTML = '<p style="color:#c00;">No se pudieron cargar las noticias.</p>';
+      });
+
+    function showNewsModal(noticia) {
+      if (!newsModalBody || !newsModal) return;
+
+      const contenidoParrafos = noticia.contenido.split('\n\n').map(p => 
+        `<p>${escapeHtml(p.trim())}</p>`
+      ).join('');
+
+      let facebookLink = '';
+      if (noticia.enlaces && noticia.enlaces.facebook) {
+        const fb = noticia.enlaces.facebook.trim();
+        facebookLink = `<p style="margin-top:16px;"><a href="${escapeAttr(fb)}" target="_blank" rel="noopener noreferrer" style="color:#1b74e4;font-weight:600;text-decoration:none;">🔵 Leer en Facebook</a></p>`;
+      }
+
+      let hashtags = '';
+      if (noticia.hashtags && noticia.hashtags.length > 0) {
+        hashtags = `<p style="margin-top:12px;color:#666;font-size:0.95rem;">${noticia.hashtags.map(h => escapeHtml(h)).join(' ')}</p>`;
+      }
+
+      let html = `
+        <div style="text-align:left;">
+          <img src="${escapeAttr(noticia.imagen)}" alt="${escapeAttr(noticia.titulo)}" style="width:100%;border-radius:12px;margin-bottom:16px;max-height:300px;object-fit:cover;" onerror="this.onerror=null;this.src='img/default-news.jpg'">
+          <h3 style="margin:16px 0 8px 0;">${escapeHtml(noticia.titulo)}</h3>
+          <p style="color:#666;font-size:0.95rem;margin:0 0 12px 0;">
+            <strong>${escapeHtml(noticia.lugar)}</strong> — ${escapeHtml(noticia.fecha)}
+          </p>
+          <div style="border-top:1px solid #eee;padding-top:16px;">
+            ${contenidoParrafos}
+          </div>
+          ${facebookLink}
+          ${hashtags}
+        </div>
+      `;
+
+      newsModalBody.innerHTML = html;
+      newsModal.style.display = 'flex';
+      newsModal.setAttribute('aria-hidden', 'false');
+      showOverlay();
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (newsModalClose) {
+      newsModalClose.addEventListener('click', () => {
+        newsModal.style.display = 'none';
+        newsModal.setAttribute('aria-hidden', 'true');
+        hideOverlay();
+        document.body.style.overflow = '';
+      });
+    }
+  }
+
+  /* ---------------------------
      Global overlay/escape behavior
      --------------------------- */
   function initGlobalClosers() {
@@ -718,6 +831,7 @@
     initFAQ();
     initDelegacionesUI();
     initGallery();
+    initNews();
     initGlobalClosers();
 
     const voluntarioBtn = document.getElementById('voluntario-btn');
@@ -729,5 +843,3 @@
   }
 
 })();
-
-
