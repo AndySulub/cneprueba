@@ -28,25 +28,29 @@
     },
     {
       "id": 3,
-      "titulo": "Nuevos cursos de primeros auxilios disponibles en Quintana Roo",
-      "fecha": "18 Sep 2025",
-      "lugar": "Quintana Roo",
-      "imagen": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80",
-      "resumen": "Nuevos cursos de primeros auxilios disponibles en Quintana Roo.",
-      "contenido": "Se han abierto nuevas fechas para los cursos de primeros auxilios en las delegaciones de Quintana Roo. Para más información, contacta con tu delegación más cercana.",
-      "enlaces": {},
-      "hashtags": ["#Capacitación", "#PrimerosAuxilios"]
+      "titulo": "COMISIÓN NACIONAL DE EMERGENCIA PARTICIPA EN LA INSTALACIÓN DEL COMITÉ MUNICIPAL DE MANEJO DEL FUEGO 2026 EN BACALAR",
+      "fecha": "Mar 2026",
+      "lugar": "Bacalar, Q. Roo",
+      "imagen": "img/BacFuego2026.jpeg",
+      "resumen": "CNE asistió a la instalación del Comité Municipal de Manejo del Fuego 2026 en Bacalar.",
+      "contenido": "En el municipio de Bacalar se llevó a cabo la instalación del Comité Municipal de Manejo del Fuego 2026, con la participación del delegado de la Comisión Nacional de Emergencia, quien asistió en representación de esta agrupación atendiendo la invitación de las autoridades correspondientes.\n\nEl acto fue encabezado por el presidente municipal, José Alfredo Contreras Méndez, así como por el director de Protección Civil Municipal, Marcelino Jiménez Contreras. Asimismo, se contó con la participación de autoridades de los tres órdenes de gobierno: municipal, estatal y federal.\n\nEste ejercicio tiene como finalidad fortalecer la coordinación interinstitucional, además de establecer estrategias conjuntas en materia de prevención, atención y control de incendios.\n\nLa participación de la Comisión Nacional de Emergencia y de Radio Auxilio Mecánico A.C. refrenda su compromiso de colaboración permanente con las autoridades, sumando esfuerzos para la protección de la ciudadanía y la preservación del entorno.\n\nCon estas acciones, las instituciones involucradas reiteran su disposición de trabajar de manera conjunta en beneficio de la población, bajo los principios de responsabilidad y servicio.",
+      "enlaces": {
+        "facebook": "https://www.facebook.com/share/p/18a7TY5rFU/?mibextid=wwXIfr"
+      },
+      "hashtags": ["#CNE", "#ManejoDelFuego2026", "#Prevención"]
     },
     {
       "id": 4,
-      "titulo": "Entrega de equipo y reconocimiento a voluntarios destacados",
-      "fecha": "05 Ago 2025",
-      "lugar": "Nacional",
-      "imagen": "https://images.unsplash.com/photo-1524492412937-4961d49ab7a3?auto=format&fit=crop&w=400&q=80",
-      "resumen": "Entrega de equipo y reconocimiento a voluntarios destacados.",
-      "contenido": "En ceremonia especial, se realizó la entrega de equipo y reconocimiento a voluntarios que han destacado por su dedicación y compromiso con la CNE.",
-      "enlaces": {},
-      "hashtags": ["#Voluntarios", "#Reconocimiento"]
+      "titulo": "COMISIÓN NACIONAL DE EMERGENCIA Y RADIO AUXILIO PARTICIPA EN ARRANQUE DEL OPERATIVO VACACIONAL SEMANA SANTA 2026",
+      "fecha": "27 Mar 2026",
+      "lugar": "Felipe Carrillo Puerto, Q. Roo",
+      "imagen": "img/FCPSSanta2026.jpeg",
+      "resumen": "Delegación 30 participó en el banderazo de inicio del Operativo Vacacional Semana Santa 2026.",
+      "contenido": "La Comisión Nacional de Emergencia y Radio Auxilio (Delegación 30) participó en el banderazo de inicio del \"Operativo Vacacional Semana Santa 2026\", realizado en coordinación con diversas corporaciones de seguridad, rescate y protección civil.\n\nEl arranque de este operativo tuvo como objetivo reforzar las acciones de prevención y respuesta ante posibles accidentes durante el periodo de receso escolar, así como garantizar la seguridad de la población y visitantes.\n\nDurante el evento, las autoridades destacaron la importancia del trabajo conjunto entre instituciones, reconociendo la labor de la Comisión Nacional de Emergencia y Radio Auxilio por su compromiso permanente en la atención de emergencias y apoyo a la ciudadanía.\n\nEste despliegue contempla la participación activa de cuerpos de auxilio y seguridad en puntos estratégicos, con el fin de salvaguardar la integridad de quienes transiten por la región en esta temporada vacacional.",
+      "enlaces": {
+        "facebook": "https://www.facebook.com/share/p/1C3YTHPKko/?mibextid=wwXIfr"
+      },
+      "hashtags": ["#CNED30", "#SemanaSanta2026", "#OperativoVacacional"]
     }
   ]
 }
