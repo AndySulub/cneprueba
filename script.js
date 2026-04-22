@@ -316,11 +316,9 @@
       miembros: [
         { numeral: "3101", cargo: "DELEGADO", nombre: "ROGER ALONSO OSORIO SALAZAR" },
         { numeral: "3102", cargo: "SUBDELEGADO", nombre: "ROBERTO JOEL FERNÁNDEZ ARREOLA" },
-        { numeral: "3103", cargo: "SECRETARIA", nombre: "RAFAEL DZUL CHI" },
         { numeral: "3105", cargo: "COMANDANTE", nombre: "SILVIO FRANCISCO ONTIVEROS" },
         { numeral: "3106", cargo: "SUBCOMANDANTE", nombre: "BERNARDO CAAMAL POOT" },
         { numeral: "3107", cargo: "RADIOCOMUNICACION", nombre: "GUIDO MENDIBURU SOLIS" },
-        { numeral: "3108", cargo: "VIALIDAD", nombre: "DAVID MUÑOZ RIVERA" },
         { numeral: "3112", cargo: "SOCIO ACTIVO", nombre: "WALTERIO FRANCISCO ONTIVEROS" },
         { numeral: "3113", cargo: "SOCIO ACTIVO", nombre: "FREDDY ANTHONY VAZQUEZ MORALES " },
         { numeral: "3114", cargo: "SOCIO ACTIVO", nombre: "CARLOS RUBEN ORDOÑES AGUILANDO" },
@@ -493,7 +491,7 @@
         { numeral: "F3", cargo: "OPERADOR - PARAMEDICO", nombre: "MISAEL ALEXIS BACELIS BALAM" },
         { numeral: "F4", cargo: "OPERADOR - PARAMEDICO", nombre: "JOSE MARIA URZAIZ MONTES DE OCA" },
         { numeral: "F5", cargo: "PARAMEDICO", nombre: "JOSÉ LUIS KANTÚ PAT" },
-        { numeral: "F6", cargo: "OPERADOR - PARAMEDICO", nombre: "JORGE ABRAHAM MARTINEZ CHAVEZ" },
+        { numeral: "F6", cargo: "OPERADOR - PARAMEDICO", nombre: "DIEGO ISAIAS ROMERO CHALE" },
         { numeral: "F7", cargo: "PARAMEDICO", nombre: "SILVIA CAROLINA CANUL NAH" }
       ]
     },
