@@ -2,6 +2,24 @@
   "noticias": [
     {
       "id": 1,
+      "titulo": "SE REALIZA CON ÉXITO EL PRIMER ENCUENTRO REGIONAL DE ATENCIÓN A EMERGENCIAS EN MOTUL",
+      "fecha": "Jun 2026",
+      "lugar": "Motul, Yucatán",
+      "imagen": "img/1erencuentrocne.jpg",
+      "resumen": "CNE realizó con éxito el Primer Encuentro Regional de Atención a Emergencias en su sede nacional en Motul.",
+      "contenido": "Motul, Yucatán.– Con una destacada participación, se llevó a cabo el Primer Encuentro Regional de Atención a Emergencias, organizado por la Comisión Nacional de Emergencia y Radio Auxilio en su sede nacional, ubicada en Motul.\n\nEl encuentro tuvo como objetivo fortalecer los conocimientos, las habilidades y la coordinación entre las instituciones de emergencia y la sociedad, mediante actividades formativas, conferencias y ejercicios prácticos orientados a mejorar la capacidad de respuesta ante situaciones de riesgo.\n\nLa jornada inició con una ceremonia cívica en la que el director general del Comité Ejecutivo Nacional, Cmte. Gener Aguilar Avilés, destacó que este tipo de acciones permiten fortalecer la preparación del personal y consolidar la sede nacional como un centro permanente de formación.\n\nEn el acto inaugural participaron Joshua Villacis, delegado de la CNE Motul; Gabriel Castro, coordinador de Capacitación; y Julio Varguez Chan, presidente de CANACO Servytur Delegación Motul, además de invitados especiales y representantes institucionales.\n\nPosteriormente se desarrollaron conferencias sobre atención al público en emergencias, prevención de accidentes de buceo y talleres simultáneos enfocados en defensa personal para mujeres, técnicas verticales y conducción de vehículos de emergencia.\n\nLas actividades fueron impartidas por especialistas invitados, quienes compartieron conocimientos en atención prehospitalaria, prevención, coordinación operativa y fortalecimiento de capacidades de respuesta.\n\nEl evento concluyó reafirmando el compromiso de la Comisión Nacional de Emergencia y Radio Auxilio con la capacitación continua, la preparación permanente y el fortalecimiento del trabajo coordinado para salvaguardar la vida y el bienestar de la ciudadanía.\n\nBajo el lema 'El que no vive para servir, no sirve para vivir', este primer encuentro fortaleció la colaboración entre instituciones dedicadas a la atención de emergencias y la protección de la sociedad.",
+      "enlaces": {
+        "facebook": "https://m.facebook.com/story.php?story_fbid=pfbid021kAb3pTY7XyMjNGSZtxrkTstYaLuM27YC1JeLK8WyUopb3qiU7BwSkDrCyN19HcKl&id=61568177040038&mibextid=wwXIfr"
+      },
+      "hashtags": [
+        "#CNE",
+        "#EncuentroRegional",
+        "#Capacitación",
+        "#AtenciónAEmergencias"
+      ]
+    },
+    {
+      "id": 2,
       "titulo": "IMPARTEN CURSO DE PRIMEROS AUXILIOS A PERSONAL DE LA JURISDICCIÓN SANITARIA #3",
       "fecha": "19 Mar 2026",
       "lugar": "Felipe Carrillo Puerto, Q. Roo",
@@ -17,13 +35,13 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "titulo": "COMISIÓN NACIONAL DE EMERGENCIA PARTICIPA EN EL SEMINARIO INTERNACIONAL DE HURACANES EN MÉRIDA",
       "fecha": "23/24 Marzo 2026",
       "lugar": "Nacional",
       "imagen": "img/huracanes2026.jpg",
       "resumen": "CNE participó en el XXI Seminario Internacional de Huracanes en Mérida.",
-      "contenido": "La Comisión Nacional de Emergencia tuvo una destacada participación en el XXI Seminario Internacional de Huracanes, realizado los días lunes 23 y martes 24 de marzo de 2026 en Mérida, donde se reunieron especialistas de América para analizar estrategias de prevención ante fenómenos meteorológicos.\n\nEl evento fue inaugurado por el gobernador de Yucatán, Joaquín Díaz Mena, quien reafirmó que la entidad se mantiene preparada ante la próxima temporada de ciclones, gracias al fortalecimiento de la cultura de la prevención, la coordinación interinstitucional y el uso de tecnología.\n\nDurante su intervención, el mandatario destacó que Yucatán ha consolidado una cultura de anticipación basada en la responsabilidad, la disciplina y la participación social, subrayando que \"anticiparse es la mejor herramienta que tiene un gobierno para cuidar a su gente\".\n\nAsimismo, resaltó la importancia de los aeropuertos como puntos estratégicos durante emergencias, al convertirse en espacios clave para la evacuación de familias, la llegada de brigadas de rescate y la recepción de suministros.\n\nEn el seminario también se contó con la presencia de diversas autoridades, entre ellas la presidenta municipal de Mérida, Cecilia Patrón Laviada; representantes de la Comisión Nacional del Agua (Conagua) y de la Agencia Federal de Aviación Civil (AFAC), así como funcionarios de protección civil.\n\nPor parte de la Comisión Nacional de Emergencia y Radio Auxilio Mecánico A. C., asistieron su director general, Gener Santiago Aguilar Avilés; el coordinador estatal operativo, Roger Alonso Osorio Salazar; el coordinador en Quintana Roo, Marco Antonio Cervantes Marín; el delegado en Motul, Joshua Esteban Quijano Villasis; y el comandante en ese municipio, Jorge Francisco Bote May.\n\nCon su participación, la Comisión Nacional de Emergencia reafirmó su compromiso con la capacitación, la coordinación y la prevención, elementos fundamentales para salvaguardar la vida de la población ante eventos naturales cada vez más intensos e impredecibles.",
+      "contenido": "La Comisión Nacional de Emergencia tuvo una destacada participación en el XXI Seminario Internacional de Huracanes, realizado los días lunes 23 y martes 24 de marzo de 2026 en Mérida, donde se reunieron especialistas de América para analizar estrategias de prevención ante fenómenos meteorológicos.\n\nEl evento fue inaugurado por el gobernador de Yucatán, Joaquín Díaz Mena, quien reafirmó que la entidad se mantiene preparada ante la próxima temporada de ciclones gracias al fortalecimiento de la cultura de la prevención y coordinación institucional.\n\nLa Comisión Nacional de Emergencia reafirmó con ello su compromiso con la capacitación, la coordinación y la prevención para salvaguardar la vida de la población.",
       "enlaces": {
         "facebook": "https://www.facebook.com/share/p/1B58LPBC6r/?mibextid=wwXIfr"
       },
@@ -34,13 +52,13 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "titulo": "COMISIÓN NACIONAL DE EMERGENCIA PARTICIPA EN LA INSTALACIÓN DEL COMITÉ MUNICIPAL DE MANEJO DEL FUEGO 2026 EN BACALAR",
       "fecha": "Mar 2026",
       "lugar": "Bacalar, Q. Roo",
       "imagen": "img/BacFuego2026.jpeg",
       "resumen": "CNE asistió a la instalación del Comité Municipal de Manejo del Fuego 2026 en Bacalar.",
-      "contenido": "En el municipio de Bacalar se llevó a cabo la instalación del Comité Municipal de Manejo del Fuego 2026, con la participación del delegado de la Comisión Nacional de Emergencia, quien asistió en representación de esta agrupación atendiendo la invitación de las autoridades correspondientes.\n\nEl acto fue encabezado por el presidente municipal, José Alfredo Contreras Méndez, así como por el director de Protección Civil Municipal, Marcelino Jiménez Contreras. Asimismo, se contó con la participación de autoridades de los tres órdenes de gobierno: municipal, estatal y federal.\n\nEste ejercicio tiene como finalidad fortalecer la coordinación interinstitucional, además de establecer estrategias conjuntas en materia de prevención, atención y control de incendios.\n\nLa participación de la Comisión Nacional de Emergencia y de Radio Auxilio Mecánico A.C. refrenda su compromiso de colaboración permanente con las autoridades, sumando esfuerzos para la protección de la ciudadanía y la preservación del entorno.\n\nCon estas acciones, las instituciones involucradas reiteran su disposición de trabajar de manera conjunta en beneficio de la población, bajo los principios de responsabilidad y servicio.",
+      "contenido": "En Bacalar se llevó a cabo la instalación del Comité Municipal de Manejo del Fuego 2026 con participación de la Comisión Nacional de Emergencia, fortaleciendo estrategias conjuntas en materia de prevención, atención y control de incendios.\n\nLa participación institucional refrenda el compromiso permanente de colaboración con autoridades de los tres órdenes de gobierno para proteger a la ciudadanía y preservar el entorno.",
       "enlaces": {
         "facebook": "https://www.facebook.com/share/p/18a7TY5rFU/?mibextid=wwXIfr"
       },
@@ -51,13 +69,13 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "titulo": "COMISIÓN NACIONAL DE EMERGENCIAS Y RADIO AUXILIO PARTICIPA EN REUNIÓN DEL PRIMER INFORME TRIMESTRAL EN CHETUMAL",
       "fecha": "Abr 2026",
       "lugar": "Chetumal, Q. Roo",
       "imagen": "img/infcuentasD34.jpeg",
-      "resumen": "La Delegación 34 de Chetumal participó en la reunión del Primer Informe Trimestral de Actividades, fortaleciendo la coordinación interinstitucional en materia de seguridad y atención a emergencias.",
-      "contenido": "Chetumal, Quintana Roo.- La Delegación 34 de Chetumal, Quintana Roo, de la Comisión Nacional de Emergencias y Radio Auxilio, participó en la primera reunión del Primer Informe Trimestral de Actividades, realizada por invitación de la regidora Erika Cornelio, presidenta de la Comisión de Seguridad Pública, Policía Preventiva, Tránsito, Protección Civil, Bomberos, Rescates, Emergencias Médicas y Desastres.\n\nEn esta importante reunión estuvieron presentes diversas autoridades de los tres órdenes de gobierno y corporaciones de auxilio, entre ellas el director de Tránsito, Efraín Chávez; el capitán de la Guardia Nacional, Aureliano Alonso García, segundo inspector de la corporación; el teniente de la Marina, Guillermo Balderas; el inspector de Seguridad Ciudadana, Eliseo Cen; así como las regidoras Lidia Rojas Fabro y Lilian Silva Eroza.\n\nTambién participaron representantes de Protección Civil Municipal y del Cuerpo de Bomberos de Chetumal, quienes abordaron temas relacionados con la coordinación interinstitucional, la seguridad pública y la atención a emergencias en beneficio de la ciudadanía.\n\nLa reunión permitió fortalecer la comunicación y el trabajo conjunto entre las dependencias y organismos de auxilio, con el objetivo de mejorar la capacidad de respuesta ante situaciones de emergencia y reforzar las estrategias de prevención y seguridad en el municipio.\n\nCon estas acciones, la Comisión Nacional de Emergencias y Radio Auxilio reafirma su compromiso de colaboración con las autoridades y organismos de los distintos niveles de gobierno, trabajando de manera coordinada para salvaguardar la integridad y bienestar de la población.",
+      "resumen": "La Delegación 34 de Chetumal participó en reunión institucional fortaleciendo coordinación interinstitucional.",
+      "contenido": "La Delegación 34 de Chetumal participó en la primera reunión del Primer Informe Trimestral de Actividades, donde diversas autoridades abordaron temas relacionados con seguridad pública, protección civil y atención a emergencias.\n\nLa reunión permitió fortalecer el trabajo coordinado entre instituciones y reafirmar el compromiso de colaboración permanente en beneficio de la ciudadanía.",
       "enlaces": {
         "facebook": ""
       },
@@ -65,9 +83,7 @@
         "#CNE",
         "#Delegacion34",
         "#Chetumal",
-        "#SeguridadPublica",
-        "#ProteccionCivil",
-        "#TrabajoEnEquipo"
+        "#ProteccionCivil"
       ]
     }
   ]
